@@ -86,6 +86,48 @@ xlabel(xaxis);
 ylabel(yaxis);
 
 
+%% Plot multiple plots in same figure
+figure
+input1 = load('p2t3_LQR-integration-test-step-inputs-Q-100-1-60_p-c-and-p_v1_weird-drop.mat');
+input2 = load('p2t3_LQR-integration-test-step-inputs-Q-100-1-60_e-dot-c-and-e-dot_weird-drop.mat');
+plot_title = 'LQR tuning, large drop';
+file_name = 'p2t3_LQR-tuning_large-drop';
+
+time1 = input1.ans(1,:);
+reference1 = input1.ans(2,:);
+values1 = input1.ans(3,:);
+
+time2 = input2.ans(1,:);
+reference2 = input2.ans(2,:);
+values2 = input2.ans(3,:);
+
+time_start = 0;
+time_end = time1(end);
+
+
+
+hold on
+title(plot_title);
+
+subplot(1,2,1);
+plot(time1, reference1, time1, values1);
+xaxis = 'Time [s]';
+yaxis = 'Pitch [rad]';
+xlabel(xaxis);
+ylabel(yaxis);
+time_start = 5; 
+time_end = 35;  
+xlim([time_start time_end]);
+
+
+subplot(1,2,2);
+plot(time2, reference2, time2, values2);
+xaxis = 'Time [s]';
+yaxis = 'Elevation rate [rad/s]';
+xlabel(xaxis);
+ylabel(yaxis);
+xlim([time_start time_end]);
+
 %% Plot only part of plot
 time_start = 8; 
 time_end = 20;  
