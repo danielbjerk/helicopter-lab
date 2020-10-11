@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.165
+ * Model version              : 1.166
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Tue Sep 29 11:46:04 2020
+ * C source code generated on : Sun Oct 11 09:20:33 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -832,10 +832,9 @@ typedef struct {
   real_T ElevationCounttorad;          /* '<S2>/Elevation: Count to rad' */
   real_T ElevationTransferFcn;         /* '<S2>/Elevation: Transfer Fcn' */
   real_T Constant1[4];                 /* '<S4>/Constant1' */
-  real_T TransferFcn;                  /* '<S3>/Transfer Fcn' */
+  real_T Step2;                        /* '<S3>/Step2' */
   real_T RateTransitiony;              /* '<S5>/Rate Transition: y' */
   real_T Joystick_gain_y;              /* '<S5>/Joystick_gain_y' */
-  real_T Vs_offset;                    /* '<Root>/Vs_offset' */
   real_T TravelCounttorad;             /* '<S2>/Travel: Count to rad' */
   real_T TravelTransferFcn;            /* '<S2>/Travel: Transfer Fcn' */
   real_T FrontmotorSaturation;         /* '<S2>/Front motor: Saturation' */
@@ -845,8 +844,7 @@ typedef struct {
   real_T GameController_o4;            /* '<S5>/Game Controller' */
   real_T GameController_o5;            /* '<S5>/Game Controller' */
   real_T Integrator2[2];               /* '<S4>/Integrator2' */
-  real_T TransferFcn_m;                /* '<S4>/Transfer Fcn' */
-  real_T TmpSignalConversionAtToFile1Inp[2];
+  real_T TransferFcn;                  /* '<S4>/Transfer Fcn' */
   real_T TmpSignalConversionAtToFileInpo[2];
   real_T Sum;                          /* '<S4>/Sum' */
   real_T Sum2;                         /* '<S4>/Sum2' */
@@ -954,8 +952,8 @@ typedef struct {
   real_T ElevationTransferFcn_CSTATE;  /* '<S2>/Elevation: Transfer Fcn' */
   real_T Integrator_CSTATE;            /* '<S4>/Integrator' */
   real_T Integrator1_CSTATE;           /* '<S4>/Integrator1' */
-  real_T TransferFcn_CSTATE;           /* '<S3>/Transfer Fcn' */
   real_T TravelTransferFcn_CSTATE;     /* '<S2>/Travel: Transfer Fcn' */
+  real_T TransferFcn_CSTATE;           /* '<S3>/Transfer Fcn' */
   real_T Integrator2_CSTATE[2];        /* '<S4>/Integrator2' */
   real_T TransferFcn_CSTATE_p;         /* '<S4>/Transfer Fcn' */
 } X_heli_q8_T;
@@ -966,8 +964,8 @@ typedef struct {
   real_T ElevationTransferFcn_CSTATE;  /* '<S2>/Elevation: Transfer Fcn' */
   real_T Integrator_CSTATE;            /* '<S4>/Integrator' */
   real_T Integrator1_CSTATE;           /* '<S4>/Integrator1' */
-  real_T TransferFcn_CSTATE;           /* '<S3>/Transfer Fcn' */
   real_T TravelTransferFcn_CSTATE;     /* '<S2>/Travel: Transfer Fcn' */
+  real_T TransferFcn_CSTATE;           /* '<S3>/Transfer Fcn' */
   real_T Integrator2_CSTATE[2];        /* '<S4>/Integrator2' */
   real_T TransferFcn_CSTATE_p;         /* '<S4>/Transfer Fcn' */
 } XDot_heli_q8_T;
@@ -978,8 +976,8 @@ typedef struct {
   boolean_T ElevationTransferFcn_CSTATE;/* '<S2>/Elevation: Transfer Fcn' */
   boolean_T Integrator_CSTATE;         /* '<S4>/Integrator' */
   boolean_T Integrator1_CSTATE;        /* '<S4>/Integrator1' */
-  boolean_T TransferFcn_CSTATE;        /* '<S3>/Transfer Fcn' */
   boolean_T TravelTransferFcn_CSTATE;  /* '<S2>/Travel: Transfer Fcn' */
+  boolean_T TransferFcn_CSTATE;        /* '<S3>/Transfer Fcn' */
   boolean_T Integrator2_CSTATE[2];     /* '<S4>/Integrator2' */
   boolean_T TransferFcn_CSTATE_p;      /* '<S4>/Transfer Fcn' */
 } XDis_heli_q8_T;
@@ -1021,9 +1019,6 @@ struct P_heli_q8_T_ {
                                         */
   real_T K[10];                        /* Variable: K
                                         * Referenced by: '<S4>/Constant'
-                                        */
-  real_T Vs_offset;                    /* Variable: Vs_offset
-                                        * Referenced by: '<Root>/Vs_offset'
                                         */
   real_T e_offset;                     /* Variable: e_offset
                                         * Referenced by: '<S2>/Elevation offset'
@@ -1262,11 +1257,14 @@ struct P_heli_q8_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S4>/Integrator1'
                                         */
-  real_T TransferFcn_A;                /* Computed Parameter: TransferFcn_A
-                                        * Referenced by: '<S3>/Transfer Fcn'
+  real_T Step2_Time;                   /* Expression: 5
+                                        * Referenced by: '<S3>/Step2'
                                         */
-  real_T TransferFcn_C;                /* Computed Parameter: TransferFcn_C
-                                        * Referenced by: '<S3>/Transfer Fcn'
+  real_T Step2_Y0;                     /* Expression: 0
+                                        * Referenced by: '<S3>/Step2'
+                                        */
+  real_T Step2_YFinal;                 /* Expression: 0.3
+                                        * Referenced by: '<S3>/Step2'
                                         */
   real_T RateTransitiony_X0;           /* Expression: 0
                                         * Referenced by: '<S5>/Rate Transition: y'
@@ -1321,6 +1319,12 @@ struct P_heli_q8_T_ {
                                         */
   real_T Gainx_Gain;                   /* Expression: 10/9
                                         * Referenced by: '<S5>/Gain: x'
+                                        */
+  real_T TransferFcn_A;                /* Computed Parameter: TransferFcn_A
+                                        * Referenced by: '<S3>/Transfer Fcn'
+                                        */
+  real_T TransferFcn_C;                /* Computed Parameter: TransferFcn_C
+                                        * Referenced by: '<S3>/Transfer Fcn'
                                         */
   real_T Integrator2_IC;               /* Expression: 0
                                         * Referenced by: '<S4>/Integrator2'

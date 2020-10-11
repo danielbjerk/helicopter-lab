@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.165
+ * Model version              : 1.166
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Tue Sep 29 11:46:04 2020
+ * C source code generated on : Sun Oct 11 09:20:33 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,8 +26,7 @@ P_heli_q8_T heli_q8_P = {
   /*  Variable: F
    * Referenced by: '<S4>/Constant1'
    */
-  { 4.0809072027693604E-16, 11.548654101197666, 28.059232853077358,
-    3.873866664537028E-16 },
+  { 1.0, 0.0, 0.0, 1.0 },
   0.75,                                /* Variable: Joystick_gain_x
                                         * Referenced by: '<S5>/Joystick_gain_x'
                                         */
@@ -38,13 +37,10 @@ P_heli_q8_T heli_q8_P = {
   /*  Variable: K
    * Referenced by: '<S4>/Constant'
    */
-  { 4.0809072027693604E-16, 11.548654101197666, 6.2339531825287037E-17,
-    7.4620744728929633, 28.059232853077358, 3.873866664537028E-16,
-    1.6228282273517884E-16, 2.2360679774997982, 31.622776601683817,
-    -2.5102741605587353E-15 },
-  7.8394,                              /* Variable: Vs_offset
-                                        * Referenced by: '<Root>/Vs_offset'
-                                        */
+  { 2.0577122445963165E-16, 24.275860690056838, -9.1878922633202184E-16,
+    29.933711170853691, 36.710057440198611, -5.7094861822167641E-15,
+    -1.0645737002127759E-15, 3.1622776601684053, 14.142135623730949,
+    4.5202207139554486E-15 },
   -322.2611,                           /* Variable: e_offset
                                         * Referenced by: '<S2>/Elevation offset'
                                         */
@@ -296,11 +292,14 @@ P_heli_q8_T heli_q8_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S4>/Integrator1'
                                         */
-  -50.0,                               /* Computed Parameter: TransferFcn_A
-                                        * Referenced by: '<S3>/Transfer Fcn'
+  5.0,                                 /* Expression: 5
+                                        * Referenced by: '<S3>/Step2'
                                         */
-  50.0,                                /* Computed Parameter: TransferFcn_C
-                                        * Referenced by: '<S3>/Transfer Fcn'
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S3>/Step2'
+                                        */
+  0.3,                                 /* Expression: 0.3
+                                        * Referenced by: '<S3>/Step2'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S5>/Rate Transition: y'
@@ -355,6 +354,12 @@ P_heli_q8_T heli_q8_P = {
                                         */
   1.1111111111111112,                  /* Expression: 10/9
                                         * Referenced by: '<S5>/Gain: x'
+                                        */
+  -50.0,                               /* Computed Parameter: TransferFcn_A
+                                        * Referenced by: '<S3>/Transfer Fcn'
+                                        */
+  50.0,                                /* Computed Parameter: TransferFcn_C
+                                        * Referenced by: '<S3>/Transfer Fcn'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S4>/Integrator2'
