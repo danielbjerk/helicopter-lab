@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.166
+ * Model version              : 1.167
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Sun Oct 11 09:20:33 2020
+ * C source code generated on : Sun Oct 11 09:44:44 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -832,20 +832,21 @@ typedef struct {
   real_T ElevationCounttorad;          /* '<S2>/Elevation: Count to rad' */
   real_T ElevationTransferFcn;         /* '<S2>/Elevation: Transfer Fcn' */
   real_T Constant1[4];                 /* '<S4>/Constant1' */
-  real_T Step2;                        /* '<S3>/Step2' */
-  real_T RateTransitiony;              /* '<S5>/Rate Transition: y' */
-  real_T Joystick_gain_y;              /* '<S5>/Joystick_gain_y' */
+  real_T Step3;                        /* '<S3>/Step3' */
+  real_T Vs_offset;                    /* '<Root>/Vs_offset' */
   real_T TravelCounttorad;             /* '<S2>/Travel: Count to rad' */
   real_T TravelTransferFcn;            /* '<S2>/Travel: Transfer Fcn' */
   real_T FrontmotorSaturation;         /* '<S2>/Front motor: Saturation' */
   real_T BackmotorSaturation;          /* '<S2>/Back motor: Saturation' */
   real_T RateTransitionx;              /* '<S5>/Rate Transition: x' */
   real_T Joystick_gain_x;              /* '<S5>/Joystick_gain_x' */
+  real_T RateTransitiony;              /* '<S5>/Rate Transition: y' */
+  real_T Joystick_gain_y;              /* '<S5>/Joystick_gain_y' */
   real_T GameController_o4;            /* '<S5>/Game Controller' */
   real_T GameController_o5;            /* '<S5>/Game Controller' */
   real_T Integrator2[2];               /* '<S4>/Integrator2' */
   real_T TransferFcn;                  /* '<S4>/Transfer Fcn' */
-  real_T TmpSignalConversionAtToFileInpo[2];
+  real_T TmpSignalConversionAtToFile1Inp[2];
   real_T Sum;                          /* '<S4>/Sum' */
   real_T Sum2;                         /* '<S4>/Sum2' */
 } B_heli_q8_T;
@@ -860,9 +861,9 @@ typedef struct {
   real_T HILInitialize_FilterFrequency[8];/* '<Root>/HIL Initialize' */
   real_T HILInitialize_POSortedFreqs[8];/* '<Root>/HIL Initialize' */
   real_T HILInitialize_POValues[8];    /* '<Root>/HIL Initialize' */
-  real_T RateTransitiony_Buffer0;      /* '<S5>/Rate Transition: y' */
   real_T HILWriteAnalog_Buffer[2];     /* '<S2>/HIL Write Analog' */
   real_T RateTransitionx_Buffer0;      /* '<S5>/Rate Transition: x' */
+  real_T RateTransitiony_Buffer0;      /* '<S5>/Rate Transition: y' */
   t_game_controller GameController_Controller;/* '<S5>/Game Controller' */
   t_card HILInitialize_Card;           /* '<Root>/HIL Initialize' */
   t_task HILReadEncoderTimebase_Task;  /* '<S2>/HIL Read Encoder Timebase' */
@@ -921,10 +922,6 @@ typedef struct {
 
   struct {
     void *FilePtr;
-  } ToFile_PWORK;                      /* '<S4>/To File' */
-
-  struct {
-    void *FilePtr;
   } ToFile1_PWORK;                     /* '<S4>/To File1' */
 
   int32_T HILInitialize_ClockModes[3]; /* '<Root>/HIL Initialize' */
@@ -935,11 +932,6 @@ typedef struct {
   int32_T HILInitialize_POPolarityVals[8];/* '<Root>/HIL Initialize' */
   int32_T HILReadEncoderTimebase_Buffer[3];/* '<S2>/HIL Read Encoder Timebase' */
   uint32_T HILInitialize_POSortedChans[8];/* '<Root>/HIL Initialize' */
-  struct {
-    int_T Count;
-    int_T Decimation;
-  } ToFile_IWORK;                      /* '<S4>/To File' */
-
   struct {
     int_T Count;
     int_T Decimation;
@@ -1019,6 +1011,9 @@ struct P_heli_q8_T_ {
                                         */
   real_T K[10];                        /* Variable: K
                                         * Referenced by: '<S4>/Constant'
+                                        */
+  real_T Vs_offset;                    /* Variable: Vs_offset
+                                        * Referenced by: '<Root>/Vs_offset'
                                         */
   real_T e_offset;                     /* Variable: e_offset
                                         * Referenced by: '<S2>/Elevation offset'
@@ -1257,26 +1252,14 @@ struct P_heli_q8_T_ {
   real_T Integrator1_IC;               /* Expression: 0
                                         * Referenced by: '<S4>/Integrator1'
                                         */
-  real_T Step2_Time;                   /* Expression: 5
-                                        * Referenced by: '<S3>/Step2'
+  real_T Step3_Time;                   /* Expression: 10
+                                        * Referenced by: '<S3>/Step3'
                                         */
-  real_T Step2_Y0;                     /* Expression: 0
-                                        * Referenced by: '<S3>/Step2'
+  real_T Step3_Y0;                     /* Expression: 0
+                                        * Referenced by: '<S3>/Step3'
                                         */
-  real_T Step2_YFinal;                 /* Expression: 0.3
-                                        * Referenced by: '<S3>/Step2'
-                                        */
-  real_T RateTransitiony_X0;           /* Expression: 0
-                                        * Referenced by: '<S5>/Rate Transition: y'
-                                        */
-  real_T DeadZoney_Start;              /* Expression: -0.12
-                                        * Referenced by: '<S5>/Dead Zone: y'
-                                        */
-  real_T DeadZoney_End;                /* Expression: 0.12
-                                        * Referenced by: '<S5>/Dead Zone: y'
-                                        */
-  real_T Gainy_Gain;                   /* Expression: 10/9
-                                        * Referenced by: '<S5>/Gain: y'
+  real_T Step3_YFinal;                 /* Expression: 0.05
+                                        * Referenced by: '<S3>/Step3'
                                         */
   real_T Backgain_Gain;                /* Expression: 0.5
                                         * Referenced by: '<S1>/Back gain'
@@ -1319,6 +1302,18 @@ struct P_heli_q8_T_ {
                                         */
   real_T Gainx_Gain;                   /* Expression: 10/9
                                         * Referenced by: '<S5>/Gain: x'
+                                        */
+  real_T RateTransitiony_X0;           /* Expression: 0
+                                        * Referenced by: '<S5>/Rate Transition: y'
+                                        */
+  real_T DeadZoney_Start;              /* Expression: -0.12
+                                        * Referenced by: '<S5>/Dead Zone: y'
+                                        */
+  real_T DeadZoney_End;                /* Expression: 0.12
+                                        * Referenced by: '<S5>/Dead Zone: y'
+                                        */
+  real_T Gainy_Gain;                   /* Expression: 10/9
+                                        * Referenced by: '<S5>/Gain: y'
                                         */
   real_T TransferFcn_A;                /* Computed Parameter: TransferFcn_A
                                         * Referenced by: '<S3>/Transfer Fcn'

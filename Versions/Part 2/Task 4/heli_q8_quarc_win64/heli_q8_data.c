@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.166
+ * Model version              : 1.167
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Sun Oct 11 09:20:33 2020
+ * C source code generated on : Sun Oct 11 09:44:44 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,7 +26,8 @@ P_heli_q8_T heli_q8_P = {
   /*  Variable: F
    * Referenced by: '<S4>/Constant1'
    */
-  { 1.0, 0.0, 0.0, 1.0 },
+  { -5.8022386050353769E-17, 20.000149259117261, 35.29603859456337,
+    -2.5764150329163784E-15 },
   0.75,                                /* Variable: Joystick_gain_x
                                         * Referenced by: '<S5>/Joystick_gain_x'
                                         */
@@ -37,10 +38,13 @@ P_heli_q8_T heli_q8_P = {
   /*  Variable: K
    * Referenced by: '<S4>/Constant'
    */
-  { 2.0577122445963165E-16, 24.275860690056838, -9.1878922633202184E-16,
-    29.933711170853691, 36.710057440198611, -5.7094861822167641E-15,
-    -1.0645737002127759E-15, 3.1622776601684053, 14.142135623730949,
-    4.5202207139554486E-15 },
+  { -5.8022386050353769E-17, 20.000149259117261, -4.1460514996541208E-16,
+    9.4400106688274512, 35.29603859456337, -2.5764150329163784E-15,
+    1.5219201634205405E-16, 0.00031622776601797044, 9.9999999999999964,
+    8.5385274963477814E-18 },
+  7.8394,                              /* Variable: Vs_offset
+                                        * Referenced by: '<Root>/Vs_offset'
+                                        */
   -322.2611,                           /* Variable: e_offset
                                         * Referenced by: '<S2>/Elevation offset'
                                         */
@@ -292,26 +296,14 @@ P_heli_q8_T heli_q8_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S4>/Integrator1'
                                         */
-  5.0,                                 /* Expression: 5
-                                        * Referenced by: '<S3>/Step2'
+  10.0,                                /* Expression: 10
+                                        * Referenced by: '<S3>/Step3'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S3>/Step2'
+                                        * Referenced by: '<S3>/Step3'
                                         */
-  0.3,                                 /* Expression: 0.3
-                                        * Referenced by: '<S3>/Step2'
-                                        */
-  0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S5>/Rate Transition: y'
-                                        */
-  -0.12,                               /* Expression: -0.12
-                                        * Referenced by: '<S5>/Dead Zone: y'
-                                        */
-  0.12,                                /* Expression: 0.12
-                                        * Referenced by: '<S5>/Dead Zone: y'
-                                        */
-  1.1111111111111112,                  /* Expression: 10/9
-                                        * Referenced by: '<S5>/Gain: y'
+  0.05,                                /* Expression: 0.05
+                                        * Referenced by: '<S3>/Step3'
                                         */
   0.5,                                 /* Expression: 0.5
                                         * Referenced by: '<S1>/Back gain'
@@ -354,6 +346,18 @@ P_heli_q8_T heli_q8_P = {
                                         */
   1.1111111111111112,                  /* Expression: 10/9
                                         * Referenced by: '<S5>/Gain: x'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S5>/Rate Transition: y'
+                                        */
+  -0.12,                               /* Expression: -0.12
+                                        * Referenced by: '<S5>/Dead Zone: y'
+                                        */
+  0.12,                                /* Expression: 0.12
+                                        * Referenced by: '<S5>/Dead Zone: y'
+                                        */
+  1.1111111111111112,                  /* Expression: 10/9
+                                        * Referenced by: '<S5>/Gain: y'
                                         */
   -50.0,                               /* Computed Parameter: TransferFcn_A
                                         * Referenced by: '<S3>/Transfer Fcn'
