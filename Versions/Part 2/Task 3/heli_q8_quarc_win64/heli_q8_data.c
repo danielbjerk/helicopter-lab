@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.161
+ * Model version              : 1.162
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Sun Sep 13 11:51:42 2020
+ * C source code generated on : Sun Oct 11 10:29:53 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,7 +26,7 @@ P_heli_q8_T heli_q8_P = {
   /*  Variable: F
    * Referenced by: '<Root>/Constant1'
    */
-  { 0.0, 6.3245553203367573, 31.622776601683789, 0.0 },
+  { 0.0, 6.3245553203367706, 31.622776601683789, 0.0 },
   0.75,                                /* Variable: Joystick_gain_x
                                         * Referenced by: '<S4>/Joystick_gain_x'
                                         */
@@ -37,12 +37,15 @@ P_heli_q8_T heli_q8_P = {
   /*  Variable: K
    * Referenced by: '<Root>/Constant'
    */
-  { 0.0, 6.3245553203367573, 0.0, 10.247818986489264, 31.622776601683789, 0.0 },
+  { 0.0, 6.3245553203367706, 0.0, 12.042333410923728, 31.622776601683789, 0.0 },
   7.8394,                              /* Variable: Vs_offset
                                         * Referenced by: '<Root>/Vs_offset'
                                         */
   -322.2611,                           /* Variable: e_offset
                                         * Referenced by: '<S2>/Elevation offset'
+                                        */
+  0.0,                                 /* Mask Parameter: Ramp_X0
+                                        * Referenced by: '<S5>/Constant1'
                                         */
   10.0,                                /* Mask Parameter: HILInitialize_analog_input_maxi
                                         * Referenced by: '<Root>/HIL Initialize'
@@ -88,6 +91,14 @@ P_heli_q8_T heli_q8_P = {
                                         */
   0.0,                                 /* Mask Parameter: HILInitialize_set_other_outpu_j
                                         * Referenced by: '<Root>/HIL Initialize'
+                                        */
+  -0.03,                               /* Mask Parameter: Ramp_slope
+                                        * Referenced by: '<S5>/Step'
+                                        */
+  30.0,                                /* Mask Parameter: Ramp_start
+                                        * Referenced by:
+                                        *   '<S5>/Constant'
+                                        *   '<S5>/Step'
                                         */
   0.0,                                 /* Mask Parameter: HILInitialize_watchdog_analog_o
                                         * Referenced by: '<Root>/HIL Initialize'
@@ -263,16 +274,25 @@ P_heli_q8_T heli_q8_P = {
                                         * Referenced by: '<Root>/HIL Initialize'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S4>/Rate Transition: y'
+                                        * Referenced by: '<S5>/Step'
                                         */
-  -0.12,                               /* Expression: -0.12
-                                        * Referenced by: '<S4>/Dead Zone: y'
+  30.0,                                /* Expression: 30
+                                        * Referenced by: '<S3>/Step1'
                                         */
-  0.12,                                /* Expression: 0.12
-                                        * Referenced by: '<S4>/Dead Zone: y'
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S3>/Step1'
                                         */
-  1.1111111111111112,                  /* Expression: 10/9
-                                        * Referenced by: '<S4>/Gain: y'
+  1.0,                                 /* Expression: 1
+                                        * Referenced by: '<S3>/Step1'
+                                        */
+  5.0,                                 /* Expression: 5
+                                        * Referenced by: '<S3>/Transport Delay2'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S3>/Transport Delay2'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S3>/Switch1'
                                         */
   -10.0,                               /* Computed Parameter: TransferFcn_A
                                         * Referenced by: '<Root>/Transfer Fcn'
@@ -283,7 +303,7 @@ P_heli_q8_T heli_q8_P = {
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S3>/Constant5'
                                         */
-  20.0,                                /* Expression: 20
+  30.0,                                /* Expression: 30
                                         * Referenced by: '<S3>/Step'
                                         */
   0.0,                                 /* Expression: 0
@@ -292,14 +312,11 @@ P_heli_q8_T heli_q8_P = {
   1.0,                                 /* Expression: 1
                                         * Referenced by: '<S3>/Step'
                                         */
-  10.0,                                /* Expression: 10
-                                        * Referenced by: '<S3>/Step2'
+  5.0,                                 /* Expression: 5
+                                        * Referenced by: '<S3>/Transport Delay'
                                         */
   0.0,                                 /* Expression: 0
-                                        * Referenced by: '<S3>/Step2'
-                                        */
-  0.3,                                 /* Expression: 0.3
-                                        * Referenced by: '<S3>/Step2'
+                                        * Referenced by: '<S3>/Transport Delay'
                                         */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S3>/Switch'
@@ -334,6 +351,9 @@ P_heli_q8_T heli_q8_P = {
   0.5,                                 /* Expression: 0.5
                                         * Referenced by: '<S1>/Back gain'
                                         */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<Root>/Integrator'
+                                        */
   0.00076699039394282058,              /* Expression: 2*pi/8192
                                         * Referenced by: '<S2>/Travel: Count to rad'
                                         */
@@ -358,6 +378,36 @@ P_heli_q8_T heli_q8_P = {
   -5.0,                                /* Expression: -5
                                         * Referenced by: '<S2>/Back motor: Saturation'
                                         */
+  0.5,                                 /* Expression: 0.5
+                                        * Referenced by: '<S3>/Constant1'
+                                        */
+  -1.0,                                /* Expression: -1
+                                        * Referenced by: '<S3>/Pulse Generator'
+                                        */
+  10000.0,                             /* Computed Parameter: PulseGenerator_Period
+                                        * Referenced by: '<S3>/Pulse Generator'
+                                        */
+  5000.0,                              /* Computed Parameter: PulseGenerator_Duty
+                                        * Referenced by: '<S3>/Pulse Generator'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S3>/Pulse Generator'
+                                        */
+  0.1,                                 /* Expression: 0.1
+                                        * Referenced by: '<S3>/Constant3'
+                                        */
+  -0.1,                                /* Expression: -0.1
+                                        * Referenced by: '<S3>/Pulse Generator1'
+                                        */
+  3000.0,                              /* Computed Parameter: PulseGenerator1_Period
+                                        * Referenced by: '<S3>/Pulse Generator1'
+                                        */
+  1500.0,                              /* Computed Parameter: PulseGenerator1_Duty
+                                        * Referenced by: '<S3>/Pulse Generator1'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S3>/Pulse Generator1'
+                                        */
   0.0,                                 /* Expression: 0
                                         * Referenced by: '<S4>/Rate Transition: x'
                                         */
@@ -369,6 +419,18 @@ P_heli_q8_T heli_q8_P = {
                                         */
   1.1111111111111112,                  /* Expression: 10/9
                                         * Referenced by: '<S4>/Gain: x'
+                                        */
+  0.0,                                 /* Expression: 0
+                                        * Referenced by: '<S4>/Rate Transition: y'
+                                        */
+  -0.12,                               /* Expression: -0.12
+                                        * Referenced by: '<S4>/Dead Zone: y'
+                                        */
+  0.12,                                /* Expression: 0.12
+                                        * Referenced by: '<S4>/Dead Zone: y'
+                                        */
+  1.1111111111111112,                  /* Expression: 10/9
+                                        * Referenced by: '<S4>/Gain: y'
                                         */
   -50.0,                               /* Computed Parameter: TransferFcn_A_d
                                         * Referenced by: '<S3>/Transfer Fcn'
