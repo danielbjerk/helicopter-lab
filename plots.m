@@ -5,15 +5,16 @@ clear all
 close all
 
 %% Init one file
-input = load('p2t2_pole-place-K_poles-2-2i-sqrt(8)_e_dot-c-and-e_dot.mat');
-plot_title = 'Multivariable control, pole placement, manual input';
-file_name = 'p2t2_pole-placement-manual-input_elevation-rate';
+input = load('p3t1_accelerometer.mat');
+plot_title = 'Accelerometer measurements';
+file_name = 'p3t1_testing-accelerometer';
 xaxis = 'Time [s]';
-yaxis = 'Elevation rate [rad/s]';
+yaxis = 'Acceleration [rad/s^2]';
 
 time = input.ans(1,:);
 setpoint = input.ans(2,:);
 values = input.ans(3,:);
+values2 = input.ans(4,:);
 
 time_start = 0;
 time_end = time(end);
@@ -25,6 +26,7 @@ title(plot_title);
 
 plot(time, setpoint);
 plot(time, values);
+plot(time, values2);
 xlim([time_start time_end]);
 
 
@@ -32,14 +34,14 @@ xlim([time_start time_end]);
 xlabel(xaxis);
 ylabel(yaxis);
 
-lgd = legend('Reference', 'Measurement');
+lgd = legend('x', 'y', 'z');
 lgd.Location = 'southeast';
 
 %% Init multiple files
 figure
-input1 = load('p2t4_LQR-computed-input-F-optimal_e-dot-c-and-e-dot.mat');
-input2 = load('p2t4_LQR-computed-input-F-0-1-0-1_e-dot-c-and-e-dot.mat');
-%input3 = load('p2t2_pole-place-controlled-input-K_poles-2,5-2,5i-sqrt(2,5^2+2,5^2)_e_dot-c-and-e_dot.mat');
+input1 = load('p3t1_gyro-and-enc-one-axis_pitch-rate.mat');
+input2 = load('p3t1_gyro-and-enc-one-axis_elevation-rate.mat');
+input3 = load('p3t1_gyro-and-enc-one-axis_travel-rate.mat');
 %input4 = load('p1t3_pole-placement-a=-1-b=2-with-elev_pitch-measurement_v1.mat');
 plot_title = 'Multivariable control, different choice of feed foreward matrix F';
 file_name = 'p2t4_LQR-comparing-F_elevation-rate';
@@ -48,11 +50,11 @@ yaxis = 'Elevation rate [rad/s]';
 
 time1 = input1.ans(1,:);
 reference1 = input1.ans(2,:);
-values1 = input1.ans(3,:);
+%values1 = input1.ans(3,:);
 
 time2 = input2.ans(1,:);
-%reference2 = input2.ans(2,:);
-values2 = input2.ans(3,:);
+reference2 = input2.ans(2,:);
+%values2 = input2.ans(3,:);
 
 %time3 = input3.ans(1,:);
 %reference3 = input3.ans(2,:);
@@ -88,10 +90,11 @@ ylabel(yaxis);
 
 %% Plot multiple plots in same figure
 figure
-input1 = load('p2t3_LQR-integration-test-step-inputs-Q-100-1-60_p-c-and-p_v1_weird-drop.mat');
-input2 = load('p2t3_LQR-integration-test-step-inputs-Q-100-1-60_e-dot-c-and-e-dot_weird-drop.mat');
-plot_title = 'LQR tuning, large drop';
-file_name = 'p2t3_LQR-tuning_large-drop';
+input1 = load('p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat');
+input2 = load('p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat');
+input3 = load('p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat');
+plot_title = 'Elevation affecting measured travel rate';
+file_name = 'p3t1_gyro-vs-enc_elevation-affecting-travel';
 
 time1 = input1.ans(1,:);
 reference1 = input1.ans(2,:);
@@ -101,36 +104,55 @@ time2 = input2.ans(1,:);
 reference2 = input2.ans(2,:);
 values2 = input2.ans(3,:);
 
+reference2 = cumtrapz(time2, reference2);
+values2 = cumtrapz(time2, values2);
+
+time3 = input3.ans(1,:);
+reference3 = input3.ans(2,:);
+values3 = input3.ans(3,:);
+
 time_start = 0;
 time_end = time1(end);
 
 
 
 hold on
-title(plot_title);
 
-subplot(1,2,1);
-plot(time1, reference1, time1, values1);
+subplot(3,1,1);
+h(:,1) = plot(time1, reference1, time1, values1);
+title(plot_title);
 xaxis = 'Time [s]';
-yaxis = 'Pitch [rad]';
-xlabel(xaxis);
+yaxis = 'p dot [rad/s]';
+%xlabel(xaxis);
 ylabel(yaxis);
 time_start = 5; 
-time_end = 35;  
+time_end = time_end;  
 xlim([time_start time_end]);
 
 
-subplot(1,2,2);
-plot(time2, reference2, time2, values2);
+subplot(3,1,2);
+h(:,2) = plot(time2, reference2, time2, values2);
 xaxis = 'Time [s]';
-yaxis = 'Elevation rate [rad/s]';
+yaxis = 'e [rad]';
+%xlabel(xaxis);
+ylabel(yaxis);
+xlim([time_start time_end]);
+
+
+subplot(3,1,3);
+h(:,3) = plot(time3, reference3, time3, values3);
+xaxis = 'Time [s]';
+yaxis = 'lambda dot [rad/s]';
 xlabel(xaxis);
 ylabel(yaxis);
 xlim([time_start time_end]);
 
+lg = legend('Gyro measurement', 'Encoder measurement');
+lg.Position(1:2) = [.7 .02];
+
 %% Plot only part of plot
-time_start = 8; 
-time_end = 20;  
+time_start = 55; 
+time_end = 75;  
 xlim([time_start time_end]);
 
 
