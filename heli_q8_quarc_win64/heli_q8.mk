@@ -97,11 +97,11 @@ ALT_MATLAB_ROOT      = C:\PROGRA~1\MATLAB\R2015b
 MATLAB_BIN           = C:\Program Files\MATLAB\R2015b\bin
 ALT_MATLAB_BIN       = C:\PROGRA~1\MATLAB\R2015b\bin
 S_FUNCTIONS          = rtiostream_utils.c
-S_FUNCTIONS_LIB      = C:\PROGRA~1\Quanser\QUARC\lib\win64\hil.lib C:\PROGRA~1\Quanser\QUARC\lib\win64\QUDCFC~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUANSE~4.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUA50B~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUCD81~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUANSE~1.LIB
+S_FUNCTIONS_LIB      = C:\PROGRA~1\Quanser\QUARC\lib\win64\hil.lib C:\PROGRA~1\Quanser\QUARC\lib\win64\QUDCFC~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUANSE~4.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QU2820~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUCD81~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUA50B~1.LIB C:\PROGRA~1\Quanser\QUARC\lib\win64\QUANSE~1.LIB
 SOLVER               = 
 NUMST                = 3
 TID01EQ              = 1
-NCSTATES             = 5
+NCSTATES             = 9
 COMPUTER             = PCWIN64
 BUILDARGS            =  MAT_FILE=0 SHOW_TIMES=0 DEBUG=0 DEBUG_HEAP=0 ISPROTECTINGMODEL=NOTPROTECTING OPTS="-DON_TARGET_WAIT_FOR_START=0"
 MULTITASKING         = 1
@@ -129,7 +129,7 @@ RELATIVE_PATH_TO_ANCHOR   = ..
 MODELREF_TARGET_TYPE      = NONE
 
 #-- Support for parallel builds
-START_DIR         = C:\Users\danielbb\Documents\MATLAB\Helilab
+START_DIR         = C:\Users\simenga\Documents\helicopter-lab
 MASTER_ANCHOR_DIR = 
 
 #-- Support multi-instance code
@@ -167,8 +167,9 @@ MATLAB_INCLUDES = $(MATLAB_INCLUDES);$(MATLAB_ROOT)\rtw\c\src\ext_mode\common
 
 MATLAB_INCLUDES = $(MATLAB_INCLUDES);$(START_DIR)\heli_q8_quarc_win64
 MATLAB_INCLUDES = $(MATLAB_INCLUDES);$(START_DIR)
-MATLAB_INCLUDES = $(MATLAB_INCLUDES);$(START_DIR)\Versions\PART2~1\TASK3~1
+MATLAB_INCLUDES = $(MATLAB_INCLUDES);$(START_DIR)\Versions\PART3~1\TASK4~1
 MATLAB_INCLUDES = $(MATLAB_INCLUDES);$(MATLAB_ROOT)\toolbox\coder\rtiostream\src\utils
+MATLAB_INCLUDES = $(MATLAB_INCLUDES);C:\PROGRA~1\Quanser\QUARC\blocks\COMMUN~1
 MATLAB_INCLUDES = $(MATLAB_INCLUDES);C:\PROGRA~1\Quanser\QUARC\include
 
 QUARC_INCLUDES = $(QUARC)\include

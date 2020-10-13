@@ -164,7 +164,44 @@ F(2,2) = K(2,3);
 
 %% Random F
 
-F(1,1) = 1;
-F(1,2) = 0;
-F(2,1) = 0;
-F(2,2) = 1;
+% F(1,1) = 1;
+% F(1,2) = 0;
+% F(2,1) = 0;
+% F(2,2) = 1;
+
+
+%% Luenberg observer
+sys_speed = max(abs(real(eig(A-B*K))));
+
+
+A = [0  1   0   0   0;
+    0   0   0   0   0;
+    0   0   0   1   0;
+    0   0   0   0   0;
+    K_3 0   0   0   0];
+
+B = [0  0;
+    0   K_1;
+    0   0;
+    K_2 0;
+    0   0];
+
+C = [0  0   1   0   0;
+    0   0   0   0   1];
+
+L = zeros(5,2);
+
+sys_amp = 3;
+pole_angle = 1;
+deg2rad = pi / 180;
+p = (-1)*sys_amp*sys_speed*[1 exp(-1*pole_angle*deg2rad*1i) exp(-2*pole_angle*deg2rad*1i) exp(1*pole_angle*deg2rad*1i) exp(2*pole_angle*deg2rad*1i)];
+
+p = [-sqrt(9) -2+1i -2-1i -5+2i -5-2i];
+
+close all
+plot(p, '*');
+xlim([-10 1]);
+ylim([-5.5 5.5]);
+grid on
+
+L = place(A',C',p)';

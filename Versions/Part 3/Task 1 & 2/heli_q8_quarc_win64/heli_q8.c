@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.187
+ * Model version              : 1.196
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Sun Oct 11 16:08:48 2020
+ * C source code generated on : Tue Oct 13 11:00:42 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -328,8 +328,8 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
   real_T rtb_Clock;
   real_T rtb_HILReadEncoderTimebase_o1;
   real_T rtb_Frontgain;
-  real_T rtb_Step_l;
   real_T rtb_TransportDelay2;
+  real_T rtb_Step_l;
   real_T rtb_DeadZoney;
   t_stream_ptr rtb_StreamCall1_o1;
   t_stream_ptr rtb_StreamFormattedWrite_o1;
@@ -340,6 +340,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
   boolean_T rtb_StreamRead1_o3;
   real_T currentTime;
   real_T currentTime_0;
+  real_T rtb_Gain2[3];
   int32_T i;
   if (rtmIsMajorTimeStep(heli_q8_M)) {
     /* set solver stop time */
@@ -384,12 +385,12 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       }
     }
 
-    /* S-Function (stream_call_block): '<S8>/Stream Call1' */
+    /* S-Function (stream_call_block): '<S7>/Stream Call1' */
 
     /* S-Function Block: heli_q8/IMU/IMU/Stream Call1 (stream_call_block) */
     {
       t_error result = 0;
-      t_boolean close_flag = (heli_q8_P.Constant_Value != 0);
+      t_boolean close_flag = (heli_q8_P.Constant_Value_k != 0);
       rtb_StreamCall1_o1 = NULL;
       switch (heli_q8_DW.StreamCall1_State) {
        case STREAM_CALL_STATE_NOT_CONNECTED:
@@ -472,7 +473,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       rtb_StreamCall1_o3 = (int32_T) result;
     }
 
-    /* S-Function (stream_formatted_write_block): '<S8>/Stream Formatted Write' */
+    /* S-Function (stream_formatted_write_block): '<S7>/Stream Formatted Write' */
     {
       t_error result;
       if (rtb_StreamCall1_o1 != NULL) {
@@ -493,7 +494,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       rtb_StreamFormattedWrite_o1 = rtb_StreamCall1_o1;
     }
 
-    /* S-Function (stream_read_block): '<S8>/Stream Read1' */
+    /* S-Function (stream_read_block): '<S7>/Stream Read1' */
     /* S-Function Block: heli_q8/IMU/IMU/Stream Read1 (stream_read_block) */
     {
       t_error result;
@@ -513,9 +514,9 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       rtb_StreamRead1_o5 = (int32_T) result;
     }
 
-    /* Switch: '<S8>/Switch' incorporates:
-     *  DataTypeConversion: '<S8>/Data Type Conversion'
-     *  Memory: '<S8>/Memory'
+    /* Switch: '<S7>/Switch' incorporates:
+     *  DataTypeConversion: '<S7>/Data Type Conversion'
+     *  Memory: '<S7>/Memory'
      */
     for (i = 0; i < 10; i++) {
       if (rtb_StreamRead1_o3) {
@@ -525,17 +526,40 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       }
     }
 
-    /* End of Switch: '<S8>/Switch' */
+    /* End of Switch: '<S7>/Switch' */
 
-    /* Gain: '<S8>/Gain1' */
+    /* Gain: '<S7>/Gain2' */
     for (i = 0; i < 3; i++) {
-      heli_q8_B.Gain1[i] = 0.0;
-      heli_q8_B.Gain1[i] += heli_q8_P.Gain1_Gain[i] * heli_q8_B.Switch[3];
-      heli_q8_B.Gain1[i] += heli_q8_P.Gain1_Gain[i + 3] * heli_q8_B.Switch[4];
-      heli_q8_B.Gain1[i] += heli_q8_P.Gain1_Gain[i + 6] * heli_q8_B.Switch[5];
+      rtb_Gain2[i] = heli_q8_P.Gain2_Gain[i + 6] * heli_q8_B.Switch[2] +
+        (heli_q8_P.Gain2_Gain[i + 3] * heli_q8_B.Switch[1] +
+         heli_q8_P.Gain2_Gain[i] * heli_q8_B.Switch[0]);
     }
 
-    /* End of Gain: '<S8>/Gain1' */
+    /* End of Gain: '<S7>/Gain2' */
+
+    /* Switch: '<S4>/Switch' incorporates:
+     *  Constant: '<S4>/Constant'
+     *  Constant: '<S9>/Constant'
+     *  MATLAB Function: '<S4>/Accelerometer values to euler angles'
+     *  RelationalOperator: '<S9>/Compare'
+     */
+    /* MATLAB Function 'Measurement transformations/Accelerometer values to euler angles': '<S8>:1' */
+    /* '<S8>:1:3' */
+    /* '<S8>:1:4' */
+    /* '<S8>:1:5' */
+    /* '<S8>:1:7' */
+    if (rtb_Gain2[2] == heli_q8_P.CompareToConstant_const) {
+      heli_q8_B.Switch_i[0] = heli_q8_P.Constant_Value;
+      heli_q8_B.Switch_i[1] = heli_q8_P.Constant_Value;
+      heli_q8_B.Switch_i[2] = heli_q8_P.Constant_Value;
+    } else {
+      heli_q8_B.Switch_i[0] = atan(rtb_Gain2[1] / rtb_Gain2[2]);
+      heli_q8_B.Switch_i[1] = atan(rtb_Gain2[0] / sqrt(rtb_Gain2[1] * rtb_Gain2
+        [1] + rtb_Gain2[2] * rtb_Gain2[2]));
+      heli_q8_B.Switch_i[2] = 0.0;
+    }
+
+    /* End of Switch: '<S4>/Switch' */
 
     /* Gain: '<S2>/Elevation: Count to rad' incorporates:
      *  Constant: '<S2>/Elevation offset'
@@ -543,34 +567,17 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
      */
     heli_q8_B.ElevationCounttorad = (rtb_DeadZoney - heli_q8_P.e_offset) *
       heli_q8_P.ElevationCounttorad_Gain;
-  }
 
-  /* TransferFcn: '<S2>/Elevation: Transfer Fcn' */
-  heli_q8_B.ElevationTransferFcn = 0.0;
-  heli_q8_B.ElevationTransferFcn += heli_q8_P.ElevationTransferFcn_C *
-    heli_q8_X.ElevationTransferFcn_CSTATE;
-  heli_q8_B.ElevationTransferFcn += heli_q8_P.ElevationTransferFcn_D *
-    heli_q8_B.ElevationCounttorad;
-  if (rtmIsMajorTimeStep(heli_q8_M)) {
     /* SignalConversion: '<Root>/TmpSignal ConversionAtTo FileInport1' */
-    heli_q8_B.TmpSignalConversionAtToFileInpo[0] = heli_q8_B.Gain1[1];
-    heli_q8_B.TmpSignalConversionAtToFileInpo[1] =
-      heli_q8_B.ElevationTransferFcn;
+    heli_q8_B.TmpSignalConversionAtToFileInpo[0] = heli_q8_B.Switch_i[1];
+    heli_q8_B.TmpSignalConversionAtToFileInpo[1] = heli_q8_B.ElevationCounttorad;
 
     /* Gain: '<S2>/Pitch: Count to rad' */
     heli_q8_B.PitchCounttorad = heli_q8_P.PitchCounttorad_Gain * rtb_Frontgain;
-  }
 
-  /* TransferFcn: '<S2>/Pitch: Transfer Fcn' */
-  heli_q8_B.PitchTransferFcn = 0.0;
-  heli_q8_B.PitchTransferFcn += heli_q8_P.PitchTransferFcn_C *
-    heli_q8_X.PitchTransferFcn_CSTATE;
-  heli_q8_B.PitchTransferFcn += heli_q8_P.PitchTransferFcn_D *
-    heli_q8_B.PitchCounttorad;
-  if (rtmIsMajorTimeStep(heli_q8_M)) {
     /* SignalConversion: '<Root>/TmpSignal ConversionAtTo File1Inport1' */
-    heli_q8_B.TmpSignalConversionAtToFile1Inp[0] = heli_q8_B.Gain1[0];
-    heli_q8_B.TmpSignalConversionAtToFile1Inp[1] = heli_q8_B.PitchTransferFcn;
+    heli_q8_B.TmpSignalConversionAtToFile1Inp[0] = heli_q8_B.Switch_i[0];
+    heli_q8_B.TmpSignalConversionAtToFile1Inp[1] = heli_q8_B.PitchCounttorad;
 
     /* ToFile: '<Root>/To File' */
     if (rtmIsMajorTimeStep(heli_q8_M)) {
@@ -586,7 +593,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
             u[2] = heli_q8_B.TmpSignalConversionAtToFileInpo[1];
             if (fwrite(u, sizeof(real_T), 3, fp) != 3) {
               rtmSetErrorStatus(heli_q8_M,
-                                "Error writing to MAT-file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                                "Error writing to MAT-file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
               return;
             }
 
@@ -595,7 +602,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
                             "*** The ToFile block will stop logging data before\n"
                             "    the simulation has ended, because it has reached\n"
                             "    the maximum number of elements (100000000)\n"
-                            "    allowed in MAT-file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat.\n");
+                            "    allowed in MAT-file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat.\n");
             }
           }
         }
@@ -616,7 +623,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
             u[2] = heli_q8_B.TmpSignalConversionAtToFile1Inp[1];
             if (fwrite(u, sizeof(real_T), 3, fp) != 3) {
               rtmSetErrorStatus(heli_q8_M,
-                                "Error writing to MAT-file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                                "Error writing to MAT-file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
               return;
             }
 
@@ -625,7 +632,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
                             "*** The ToFile block will stop logging data before\n"
                             "    the simulation has ended, because it has reached\n"
                             "    the maximum number of elements (100000000)\n"
-                            "    allowed in MAT-file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat.\n");
+                            "    allowed in MAT-file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat.\n");
             }
           }
         }
@@ -635,18 +642,10 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
     /* Gain: '<S2>/Travel: Count to rad' */
     heli_q8_B.TravelCounttorad = heli_q8_P.TravelCounttorad_Gain *
       rtb_HILReadEncoderTimebase_o1;
-  }
 
-  /* TransferFcn: '<S2>/Travel: Transfer Fcn' */
-  heli_q8_B.TravelTransferFcn = 0.0;
-  heli_q8_B.TravelTransferFcn += heli_q8_P.TravelTransferFcn_C *
-    heli_q8_X.TravelTransferFcn_CSTATE;
-  heli_q8_B.TravelTransferFcn += heli_q8_P.TravelTransferFcn_D *
-    heli_q8_B.TravelCounttorad;
-  if (rtmIsMajorTimeStep(heli_q8_M)) {
     /* SignalConversion: '<Root>/TmpSignal ConversionAtTo File2Inport1' */
-    heli_q8_B.TmpSignalConversionAtToFile2Inp[0] = heli_q8_B.Gain1[2];
-    heli_q8_B.TmpSignalConversionAtToFile2Inp[1] = heli_q8_B.TravelTransferFcn;
+    heli_q8_B.TmpSignalConversionAtToFile2Inp[0] = heli_q8_B.Switch_i[2];
+    heli_q8_B.TmpSignalConversionAtToFile2Inp[1] = heli_q8_B.TravelCounttorad;
 
     /* ToFile: '<Root>/To File2' */
     if (rtmIsMajorTimeStep(heli_q8_M)) {
@@ -662,7 +661,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
             u[2] = heli_q8_B.TmpSignalConversionAtToFile2Inp[1];
             if (fwrite(u, sizeof(real_T), 3, fp) != 3) {
               rtmSetErrorStatus(heli_q8_M,
-                                "Error writing to MAT-file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                                "Error writing to MAT-file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
               return;
             }
 
@@ -671,7 +670,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
                             "*** The ToFile block will stop logging data before\n"
                             "    the simulation has ended, because it has reached\n"
                             "    the maximum number of elements (100000000)\n"
-                            "    allowed in MAT-file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat.\n");
+                            "    allowed in MAT-file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat.\n");
             }
           }
         }
@@ -687,7 +686,33 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
      *  Sum: '<S1>/Add'
      */
     rtb_Frontgain = heli_q8_P.Frontgain_Gain * 0.0;
+  }
 
+  /* TransferFcn: '<S2>/Elevation: Transfer Fcn' */
+  heli_q8_B.ElevationTransferFcn = 0.0;
+  heli_q8_B.ElevationTransferFcn += heli_q8_P.ElevationTransferFcn_C *
+    heli_q8_X.ElevationTransferFcn_CSTATE;
+  heli_q8_B.ElevationTransferFcn += heli_q8_P.ElevationTransferFcn_D *
+    heli_q8_B.ElevationCounttorad;
+  if (rtmIsMajorTimeStep(heli_q8_M)) {
+  }
+
+  /* TransferFcn: '<S2>/Pitch: Transfer Fcn' */
+  heli_q8_B.PitchTransferFcn = 0.0;
+  heli_q8_B.PitchTransferFcn += heli_q8_P.PitchTransferFcn_C *
+    heli_q8_X.PitchTransferFcn_CSTATE;
+  heli_q8_B.PitchTransferFcn += heli_q8_P.PitchTransferFcn_D *
+    heli_q8_B.PitchCounttorad;
+  if (rtmIsMajorTimeStep(heli_q8_M)) {
+  }
+
+  /* TransferFcn: '<S2>/Travel: Transfer Fcn' */
+  heli_q8_B.TravelTransferFcn = 0.0;
+  heli_q8_B.TravelTransferFcn += heli_q8_P.TravelTransferFcn_C *
+    heli_q8_X.TravelTransferFcn_CSTATE;
+  heli_q8_B.TravelTransferFcn += heli_q8_P.TravelTransferFcn_D *
+    heli_q8_B.TravelCounttorad;
+  if (rtmIsMajorTimeStep(heli_q8_M)) {
     /* Saturate: '<S2>/Front motor: Saturation' */
     if (rtb_Frontgain > heli_q8_P.FrontmotorSaturation_UpperSat) {
       heli_q8_B.FrontmotorSaturation = heli_q8_P.FrontmotorSaturation_UpperSat;
@@ -727,42 +752,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       }
     }
 
-    /* Gain: '<S8>/Gain2' */
-    for (i = 0; i < 3; i++) {
-      heli_q8_B.Gain2[i] = 0.0;
-      heli_q8_B.Gain2[i] += heli_q8_P.Gain2_Gain[i] * heli_q8_B.Switch[0];
-      heli_q8_B.Gain2[i] += heli_q8_P.Gain2_Gain[i + 3] * heli_q8_B.Switch[1];
-      heli_q8_B.Gain2[i] += heli_q8_P.Gain2_Gain[i + 6] * heli_q8_B.Switch[2];
-    }
-
-    /* End of Gain: '<S8>/Gain2' */
-  }
-
-  /* Step: '<S3>/Step' */
-  currentTime = heli_q8_M->Timing.t[0];
-  if (currentTime < heli_q8_P.Step_Time) {
-    rtb_TransportDelay2 = heli_q8_P.Step_Y0;
-  } else {
-    rtb_TransportDelay2 = heli_q8_P.Step_YFinal;
-  }
-
-  /* End of Step: '<S3>/Step' */
-  /* MATLAB Function 'IMU/Accelerometer values to euler angles': '<S6>:1' */
-  /* '<S6>:1:3' */
-  /* '<S6>:1:4' */
-  /* '<S6>:1:5' */
-  /* '<S6>:1:7' */
-  /* MATLAB Function 'IMU/Gyro vector to [pitch rate, elevation rate, travle rate]': '<S7>:1' */
-  /* '<S7>:1:3' */
-  /* '<S7>:1:4' */
-  /* psi = euler_angles(3); */
-  /* '<S7>:1:8' */
-  /* '<S7>:1:11' */
-  if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* Constant: '<S3>/Constant' */
-    heli_q8_B.Constant = heli_q8_P.Constant_Value_f;
-
-    /* S-Function (stop_with_error_block): '<S8>/Stop with Call Error' */
+    /* S-Function (stop_with_error_block): '<S7>/Stop with Call Error' */
 
     /* S-Function Block: heli_q8/IMU/IMU/Stop with Call Error (stop_with_error_block) */
     {
@@ -774,7 +764,7 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       }
     }
 
-    /* S-Function (stop_with_error_block): '<S8>/Stop with Read Error' */
+    /* S-Function (stop_with_error_block): '<S7>/Stop with Read Error' */
 
     /* S-Function Block: heli_q8/IMU/IMU/Stop with Read Error (stop_with_error_block) */
     {
@@ -786,10 +776,16 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       }
     }
 
-    /* Constant: '<S4>/Constant4' */
+    /* Constant: '<S5>/Constant4' */
+    /* MATLAB Function 'Measurement transformations/Gyro vector to [pitch rate, elevation rate, travle rate]': '<S10>:1' */
+    /* '<S10>:1:3' */
+    /* '<S10>:1:4' */
+    /* psi = euler_angles(3); */
+    /* '<S10>:1:8' */
+    /* '<S10>:1:11' */
     heli_q8_B.Constant4 = heli_q8_P.Constant4_Value;
 
-    /* DiscretePulseGenerator: '<S4>/Pulse Generator' */
+    /* DiscretePulseGenerator: '<S5>/Pulse Generator' */
     rtb_DeadZoney = (heli_q8_DW.clockTickCounter < heli_q8_P.PulseGenerator_Duty)
       && (heli_q8_DW.clockTickCounter >= 0) ? heli_q8_P.PulseGenerator_Amp : 0.0;
     if (heli_q8_DW.clockTickCounter >= heli_q8_P.PulseGenerator_Period - 1.0) {
@@ -798,10 +794,10 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       heli_q8_DW.clockTickCounter++;
     }
 
-    /* End of DiscretePulseGenerator: '<S4>/Pulse Generator' */
+    /* End of DiscretePulseGenerator: '<S5>/Pulse Generator' */
   }
 
-  /* Step: '<S4>/Step1' */
+  /* Step: '<S5>/Step1' */
   currentTime = heli_q8_M->Timing.t[0];
   if (currentTime < heli_q8_P.Step1_Time) {
     rtb_TransportDelay2 = heli_q8_P.Step1_Y0;
@@ -809,15 +805,15 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
     rtb_TransportDelay2 = heli_q8_P.Step1_YFinal;
   }
 
-  /* End of Step: '<S4>/Step1' */
+  /* End of Step: '<S5>/Step1' */
   if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* Sum: '<S4>/Sum2' incorporates:
-     *  Constant: '<S4>/Constant1'
+    /* Sum: '<S5>/Sum2' incorporates:
+     *  Constant: '<S5>/Constant1'
      */
     heli_q8_B.Sum2 = rtb_DeadZoney + heli_q8_P.Constant1_Value_j;
   }
 
-  /* TransportDelay: '<S4>/Transport Delay' */
+  /* TransportDelay: '<S5>/Transport Delay' */
   {
     real_T **uBuffer = (real_T**)&heli_q8_DW.TransportDelay_PWORK.TUbufferPtrs[0];
     real_T **tBuffer = (real_T**)&heli_q8_DW.TransportDelay_PWORK.TUbufferPtrs[1];
@@ -837,16 +833,16 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       0);
   }
 
-  /* Switch: '<S4>/Switch' */
-  if (rtb_TransportDelay2 > heli_q8_P.Switch_Threshold_g) {
+  /* Switch: '<S5>/Switch' */
+  if (rtb_TransportDelay2 > heli_q8_P.Switch_Threshold) {
     heli_q8_B.Switch_p = heli_q8_B.Constant4;
   } else {
     heli_q8_B.Switch_p = rtb_Step_l;
   }
 
-  /* End of Switch: '<S4>/Switch' */
+  /* End of Switch: '<S5>/Switch' */
   if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* DiscretePulseGenerator: '<S4>/Pulse Generator1' */
+    /* DiscretePulseGenerator: '<S5>/Pulse Generator1' */
     rtb_DeadZoney = (heli_q8_DW.clockTickCounter_d <
                      heli_q8_P.PulseGenerator1_Duty) &&
       (heli_q8_DW.clockTickCounter_d >= 0) ? heli_q8_P.PulseGenerator1_Amp : 0.0;
@@ -857,39 +853,39 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       heli_q8_DW.clockTickCounter_d++;
     }
 
-    /* End of DiscretePulseGenerator: '<S4>/Pulse Generator1' */
+    /* End of DiscretePulseGenerator: '<S5>/Pulse Generator1' */
   }
 
-  /* Clock: '<S10>/Clock' */
+  /* Clock: '<S12>/Clock' */
   rtb_Clock = heli_q8_M->Timing.t[0];
   if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* Constant: '<S10>/Constant' */
-    heli_q8_B.Constant_o = heli_q8_P.Ramp_start;
+    /* Constant: '<S12>/Constant' */
+    heli_q8_B.Constant = heli_q8_P.Ramp_start;
 
-    /* Constant: '<S10>/Constant1' */
+    /* Constant: '<S12>/Constant1' */
     heli_q8_B.Constant1 = heli_q8_P.Ramp_X0;
   }
 
-  /* Step: '<S10>/Step' */
+  /* Step: '<S12>/Step' */
   currentTime = heli_q8_M->Timing.t[0];
 
-  /* Step: '<S4>/Step' */
+  /* Step: '<S5>/Step' */
   currentTime_0 = heli_q8_M->Timing.t[0];
-  if (currentTime_0 < heli_q8_P.Step_Time_k) {
+  if (currentTime_0 < heli_q8_P.Step_Time) {
     rtb_Step_l = heli_q8_P.Step_Y0_n;
   } else {
-    rtb_Step_l = heli_q8_P.Step_YFinal_i;
+    rtb_Step_l = heli_q8_P.Step_YFinal;
   }
 
-  /* End of Step: '<S4>/Step' */
+  /* End of Step: '<S5>/Step' */
   if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* Sum: '<S4>/Sum1' incorporates:
-     *  Constant: '<S4>/Constant3'
+    /* Sum: '<S5>/Sum1' incorporates:
+     *  Constant: '<S5>/Constant3'
      */
     heli_q8_B.Sum1 = rtb_DeadZoney + heli_q8_P.Constant3_Value;
   }
 
-  /* TransportDelay: '<S4>/Transport Delay2' */
+  /* TransportDelay: '<S5>/Transport Delay2' */
   {
     real_T **uBuffer = (real_T**)&heli_q8_DW.TransportDelay2_PWORK.TUbufferPtrs
       [0];
@@ -911,34 +907,34 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       0);
   }
 
-  /* Switch: '<S4>/Switch1' incorporates:
-   *  Product: '<S10>/Product'
-   *  Sum: '<S10>/Output'
-   *  Sum: '<S10>/Sum'
+  /* Switch: '<S5>/Switch1' incorporates:
+   *  Product: '<S12>/Product'
+   *  Sum: '<S12>/Output'
+   *  Sum: '<S12>/Sum'
    */
   if (rtb_Step_l > heli_q8_P.Switch1_Threshold) {
-    /* Step: '<S10>/Step' */
+    /* Step: '<S12>/Step' */
     if (currentTime < heli_q8_P.Ramp_start) {
-      currentTime = heli_q8_P.Step_Y0_i;
+      currentTime = heli_q8_P.Step_Y0;
     } else {
       currentTime = heli_q8_P.Ramp_slope;
     }
 
-    heli_q8_B.Switch1 = (rtb_Clock - heli_q8_B.Constant_o) * currentTime +
+    heli_q8_B.Switch1 = (rtb_Clock - heli_q8_B.Constant) * currentTime +
       heli_q8_B.Constant1;
   } else {
     heli_q8_B.Switch1 = rtb_TransportDelay2;
   }
 
-  /* End of Switch: '<S4>/Switch1' */
+  /* End of Switch: '<S5>/Switch1' */
 
-  /* RateTransition: '<S9>/Rate Transition: x' */
+  /* RateTransition: '<S11>/Rate Transition: x' */
   if (rtmIsMajorTimeStep(heli_q8_M)) {
     if (heli_q8_M->Timing.RateInteraction.TID1_2) {
       heli_q8_B.RateTransitionx = heli_q8_DW.RateTransitionx_Buffer0;
     }
 
-    /* DeadZone: '<S9>/Dead Zone: x' */
+    /* DeadZone: '<S11>/Dead Zone: x' */
     if (heli_q8_B.RateTransitionx > heli_q8_P.DeadZonex_End) {
       rtb_DeadZoney = heli_q8_B.RateTransitionx - heli_q8_P.DeadZonex_End;
     } else if (heli_q8_B.RateTransitionx >= heli_q8_P.DeadZonex_Start) {
@@ -947,22 +943,22 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       rtb_DeadZoney = heli_q8_B.RateTransitionx - heli_q8_P.DeadZonex_Start;
     }
 
-    /* End of DeadZone: '<S9>/Dead Zone: x' */
+    /* End of DeadZone: '<S11>/Dead Zone: x' */
 
-    /* Gain: '<S9>/Joystick_gain_x' incorporates:
-     *  Gain: '<S9>/Gain: x'
+    /* Gain: '<S11>/Joystick_gain_x' incorporates:
+     *  Gain: '<S11>/Gain: x'
      */
     heli_q8_B.Joystick_gain_x = heli_q8_P.Gainx_Gain * rtb_DeadZoney *
       heli_q8_P.Joystick_gain_x;
 
-    /* RateTransition: '<S9>/Rate Transition: y' */
+    /* RateTransition: '<S11>/Rate Transition: y' */
     if (heli_q8_M->Timing.RateInteraction.TID1_2) {
       heli_q8_B.RateTransitiony = heli_q8_DW.RateTransitiony_Buffer0;
     }
 
-    /* End of RateTransition: '<S9>/Rate Transition: y' */
+    /* End of RateTransition: '<S11>/Rate Transition: y' */
 
-    /* DeadZone: '<S9>/Dead Zone: y' */
+    /* DeadZone: '<S11>/Dead Zone: y' */
     if (heli_q8_B.RateTransitiony > heli_q8_P.DeadZoney_End) {
       rtb_DeadZoney = heli_q8_B.RateTransitiony - heli_q8_P.DeadZoney_End;
     } else if (heli_q8_B.RateTransitiony >= heli_q8_P.DeadZoney_Start) {
@@ -971,34 +967,34 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
       rtb_DeadZoney = heli_q8_B.RateTransitiony - heli_q8_P.DeadZoney_Start;
     }
 
-    /* End of DeadZone: '<S9>/Dead Zone: y' */
+    /* End of DeadZone: '<S11>/Dead Zone: y' */
 
-    /* Gain: '<S9>/Joystick_gain_y' incorporates:
-     *  Gain: '<S9>/Gain: y'
+    /* Gain: '<S11>/Joystick_gain_y' incorporates:
+     *  Gain: '<S11>/Gain: y'
      */
     heli_q8_B.Joystick_gain_y = heli_q8_P.Gainy_Gain * rtb_DeadZoney *
       heli_q8_P.Joystick_gain_y;
   }
 
-  /* End of RateTransition: '<S9>/Rate Transition: x' */
+  /* End of RateTransition: '<S11>/Rate Transition: x' */
 
-  /* Integrator: '<S5>/Integrator2' */
+  /* Integrator: '<S6>/Integrator2' */
   heli_q8_B.Integrator2[0] = heli_q8_X.Integrator2_CSTATE[0];
   heli_q8_B.Integrator2[1] = heli_q8_X.Integrator2_CSTATE[1];
   if (rtmIsMajorTimeStep(heli_q8_M)) {
   }
 
-  /* TransferFcn: '<S5>/Transfer Fcn' */
+  /* TransferFcn: '<S6>/Transfer Fcn' */
   heli_q8_B.TransferFcn = 0.0;
   heli_q8_B.TransferFcn += heli_q8_P.TransferFcn_C_d *
     heli_q8_X.TransferFcn_CSTATE_p;
   if (rtmIsMajorTimeStep(heli_q8_M)) {
   }
 
-  /* Sum: '<S5>/Sum' */
+  /* Sum: '<S6>/Sum' */
   heli_q8_B.Sum = heli_q8_B.ElevationTransferFcn - heli_q8_B.Switch1;
 
-  /* Sum: '<S5>/Sum2' */
+  /* Sum: '<S6>/Sum2' */
   heli_q8_B.Sum2_g = heli_q8_B.PitchCounttorad - heli_q8_B.Switch_p;
 }
 
@@ -1006,12 +1002,12 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
 void heli_q8_update0(void)             /* Sample time: [0.0s, 0.0s] */
 {
   if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* Update for Memory: '<S8>/Memory' */
+    /* Update for Memory: '<S7>/Memory' */
     memcpy(&heli_q8_DW.Memory_PreviousInput[0], &heli_q8_B.Switch[0], 10U *
            sizeof(real_T));
   }
 
-  /* Update for TransportDelay: '<S4>/Transport Delay' */
+  /* Update for TransportDelay: '<S5>/Transport Delay' */
   {
     real_T **uBuffer = (real_T**)&heli_q8_DW.TransportDelay_PWORK.TUbufferPtrs[0];
     real_T **tBuffer = (real_T**)&heli_q8_DW.TransportDelay_PWORK.TUbufferPtrs[1];
@@ -1032,7 +1028,7 @@ void heli_q8_update0(void)             /* Sample time: [0.0s, 0.0s] */
     (*uBuffer)[heli_q8_DW.TransportDelay_IWORK.Head] = heli_q8_B.Sum2;
   }
 
-  /* Update for TransportDelay: '<S4>/Transport Delay2' */
+  /* Update for TransportDelay: '<S5>/Transport Delay2' */
   {
     real_T **uBuffer = (real_T**)&heli_q8_DW.TransportDelay2_PWORK.TUbufferPtrs
       [0];
@@ -1116,33 +1112,33 @@ void heli_q8_derivatives(void)
     heli_q8_X.TravelTransferFcn_CSTATE;
   _rtXdot->TravelTransferFcn_CSTATE += heli_q8_B.TravelCounttorad;
 
-  /* Derivatives for TransferFcn: '<S4>/Transfer Fcn' */
+  /* Derivatives for TransferFcn: '<S5>/Transfer Fcn' */
   _rtXdot->TransferFcn_CSTATE = 0.0;
   _rtXdot->TransferFcn_CSTATE += heli_q8_P.TransferFcn_A *
     heli_q8_X.TransferFcn_CSTATE;
   _rtXdot->TransferFcn_CSTATE += heli_q8_B.Joystick_gain_x;
 
-  /* Derivatives for Integrator: '<S5>/Integrator2' */
+  /* Derivatives for Integrator: '<S6>/Integrator2' */
   _rtXdot->Integrator2_CSTATE[0] = heli_q8_B.Switch1;
   _rtXdot->Integrator2_CSTATE[1] = heli_q8_B.TransferFcn;
 
-  /* Derivatives for TransferFcn: '<S5>/Transfer Fcn' */
+  /* Derivatives for TransferFcn: '<S6>/Transfer Fcn' */
   _rtXdot->TransferFcn_CSTATE_p = 0.0;
   _rtXdot->TransferFcn_CSTATE_p += heli_q8_P.TransferFcn_A_p *
     heli_q8_X.TransferFcn_CSTATE_p;
   _rtXdot->TransferFcn_CSTATE_p += heli_q8_B.ElevationTransferFcn;
 
-  /* Derivatives for Integrator: '<S5>/Integrator' */
+  /* Derivatives for Integrator: '<S6>/Integrator' */
   _rtXdot->Integrator_CSTATE = heli_q8_B.Sum2_g;
 
-  /* Derivatives for Integrator: '<S5>/Integrator1' */
+  /* Derivatives for Integrator: '<S6>/Integrator1' */
   _rtXdot->Integrator1_CSTATE = heli_q8_B.Sum;
 }
 
 /* Model output function for TID2 */
 void heli_q8_output2(void)             /* Sample time: [0.01s, 0.0s] */
 {
-  /* S-Function (game_controller_block): '<S9>/Game Controller' */
+  /* S-Function (game_controller_block): '<S11>/Game Controller' */
 
   /* S-Function Block: heli_q8/Reference values/Joystick/Game Controller (game_controller_block) */
   {
@@ -1166,10 +1162,10 @@ void heli_q8_output2(void)             /* Sample time: [0.01s, 0.0s] */
 /* Model update function for TID2 */
 void heli_q8_update2(void)             /* Sample time: [0.01s, 0.0s] */
 {
-  /* Update for RateTransition: '<S9>/Rate Transition: x' */
+  /* Update for RateTransition: '<S11>/Rate Transition: x' */
   heli_q8_DW.RateTransitionx_Buffer0 = heli_q8_B.GameController_o4;
 
-  /* Update for RateTransition: '<S9>/Rate Transition: y' */
+  /* Update for RateTransition: '<S11>/Rate Transition: y' */
   heli_q8_DW.RateTransitiony_Buffer0 = heli_q8_B.GameController_o5;
 
   /* Update absolute time */
@@ -1598,7 +1594,7 @@ void heli_q8_initialize(void)
     }
   }
 
-  /* Start for S-Function (stream_call_block): '<S8>/Stream Call1' */
+  /* Start for S-Function (stream_call_block): '<S7>/Stream Call1' */
 
   /* S-Function Block: heli_q8/IMU/IMU/Stream Call1 (stream_call_block) */
   {
@@ -1610,16 +1606,16 @@ void heli_q8_initialize(void)
   {
     FILE *fp = (NULL);
     char fileName[509] =
-      "p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat";
+      "p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat";
     if ((fp = fopen(fileName, "wb")) == (NULL)) {
       rtmSetErrorStatus(heli_q8_M,
-                        "Error creating .mat file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                        "Error creating .mat file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
       return;
     }
 
     if (rt_WriteMat4FileHeader(fp,3,0,"ans")) {
       rtmSetErrorStatus(heli_q8_M,
-                        "Error writing mat file header to file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                        "Error writing mat file header to file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
       return;
     }
 
@@ -1631,17 +1627,16 @@ void heli_q8_initialize(void)
   /* Start for ToFile: '<Root>/To File1' */
   {
     FILE *fp = (NULL);
-    char fileName[509] =
-      "p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat";
+    char fileName[509] = "p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat";
     if ((fp = fopen(fileName, "wb")) == (NULL)) {
       rtmSetErrorStatus(heli_q8_M,
-                        "Error creating .mat file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                        "Error creating .mat file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
       return;
     }
 
     if (rt_WriteMat4FileHeader(fp,3,0,"ans")) {
       rtmSetErrorStatus(heli_q8_M,
-                        "Error writing mat file header to file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                        "Error writing mat file header to file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
       return;
     }
 
@@ -1653,17 +1648,16 @@ void heli_q8_initialize(void)
   /* Start for ToFile: '<Root>/To File2' */
   {
     FILE *fp = (NULL);
-    char fileName[509] =
-      "p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat";
+    char fileName[509] = "p3t1_acc-and-enc-multiple-axis-transformed_travel.mat";
     if ((fp = fopen(fileName, "wb")) == (NULL)) {
       rtmSetErrorStatus(heli_q8_M,
-                        "Error creating .mat file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                        "Error creating .mat file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
       return;
     }
 
     if (rt_WriteMat4FileHeader(fp,3,0,"ans")) {
       rtmSetErrorStatus(heli_q8_M,
-                        "Error writing mat file header to file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                        "Error writing mat file header to file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
       return;
     }
 
@@ -1672,10 +1666,10 @@ void heli_q8_initialize(void)
     heli_q8_DW.ToFile2_PWORK.FilePtr = fp;
   }
 
-  /* Start for DiscretePulseGenerator: '<S4>/Pulse Generator' */
+  /* Start for DiscretePulseGenerator: '<S5>/Pulse Generator' */
   heli_q8_DW.clockTickCounter = 0;
 
-  /* Start for TransportDelay: '<S4>/Transport Delay' */
+  /* Start for TransportDelay: '<S5>/Transport Delay' */
   {
     real_T *pBuffer = &heli_q8_DW.TransportDelay_RWORK.TUbufferArea[0];
     heli_q8_DW.TransportDelay_IWORK.Tail = 0;
@@ -1688,10 +1682,10 @@ void heli_q8_initialize(void)
     heli_q8_DW.TransportDelay_PWORK.TUbufferPtrs[1] = (void *) &pBuffer[1024];
   }
 
-  /* Start for DiscretePulseGenerator: '<S4>/Pulse Generator1' */
+  /* Start for DiscretePulseGenerator: '<S5>/Pulse Generator1' */
   heli_q8_DW.clockTickCounter_d = 0;
 
-  /* Start for TransportDelay: '<S4>/Transport Delay2' */
+  /* Start for TransportDelay: '<S5>/Transport Delay2' */
   {
     real_T *pBuffer = &heli_q8_DW.TransportDelay2_RWORK.TUbufferArea[0];
     heli_q8_DW.TransportDelay2_IWORK.Tail = 0;
@@ -1704,13 +1698,13 @@ void heli_q8_initialize(void)
     heli_q8_DW.TransportDelay2_PWORK.TUbufferPtrs[1] = (void *) &pBuffer[1024];
   }
 
-  /* Start for RateTransition: '<S9>/Rate Transition: x' */
+  /* Start for RateTransition: '<S11>/Rate Transition: x' */
   heli_q8_B.RateTransitionx = heli_q8_P.RateTransitionx_X0;
 
-  /* Start for RateTransition: '<S9>/Rate Transition: y' */
+  /* Start for RateTransition: '<S11>/Rate Transition: y' */
   heli_q8_B.RateTransitiony = heli_q8_P.RateTransitiony_X0;
 
-  /* Start for S-Function (game_controller_block): '<S9>/Game Controller' */
+  /* Start for S-Function (game_controller_block): '<S11>/Game Controller' */
 
   /* S-Function Block: heli_q8/Reference values/Joystick/Game Controller (game_controller_block) */
   {
@@ -1739,7 +1733,7 @@ void heli_q8_initialize(void)
     }
   }
 
-  /* InitializeConditions for Memory: '<S8>/Memory' */
+  /* InitializeConditions for Memory: '<S7>/Memory' */
   memcpy(&heli_q8_DW.Memory_PreviousInput[0], &heli_q8_P.Memory_X0[0], 10U *
          sizeof(real_T));
 
@@ -1752,26 +1746,26 @@ void heli_q8_initialize(void)
   /* InitializeConditions for TransferFcn: '<S2>/Travel: Transfer Fcn' */
   heli_q8_X.TravelTransferFcn_CSTATE = 0.0;
 
-  /* InitializeConditions for RateTransition: '<S9>/Rate Transition: x' */
+  /* InitializeConditions for RateTransition: '<S11>/Rate Transition: x' */
   heli_q8_DW.RateTransitionx_Buffer0 = heli_q8_P.RateTransitionx_X0;
 
-  /* InitializeConditions for RateTransition: '<S9>/Rate Transition: y' */
+  /* InitializeConditions for RateTransition: '<S11>/Rate Transition: y' */
   heli_q8_DW.RateTransitiony_Buffer0 = heli_q8_P.RateTransitiony_X0;
 
-  /* InitializeConditions for TransferFcn: '<S4>/Transfer Fcn' */
+  /* InitializeConditions for TransferFcn: '<S5>/Transfer Fcn' */
   heli_q8_X.TransferFcn_CSTATE = 0.0;
 
-  /* InitializeConditions for Integrator: '<S5>/Integrator2' */
+  /* InitializeConditions for Integrator: '<S6>/Integrator2' */
   heli_q8_X.Integrator2_CSTATE[0] = heli_q8_P.Integrator2_IC;
   heli_q8_X.Integrator2_CSTATE[1] = heli_q8_P.Integrator2_IC;
 
-  /* InitializeConditions for TransferFcn: '<S5>/Transfer Fcn' */
+  /* InitializeConditions for TransferFcn: '<S6>/Transfer Fcn' */
   heli_q8_X.TransferFcn_CSTATE_p = 0.0;
 
-  /* InitializeConditions for Integrator: '<S5>/Integrator' */
+  /* InitializeConditions for Integrator: '<S6>/Integrator' */
   heli_q8_X.Integrator_CSTATE = heli_q8_P.Integrator_IC;
 
-  /* InitializeConditions for Integrator: '<S5>/Integrator1' */
+  /* InitializeConditions for Integrator: '<S6>/Integrator1' */
   heli_q8_X.Integrator1_CSTATE = heli_q8_P.Integrator1_IC;
 }
 
@@ -1869,7 +1863,7 @@ void heli_q8_terminate(void)
     heli_q8_DW.HILInitialize_Card = NULL;
   }
 
-  /* Terminate for S-Function (stream_call_block): '<S8>/Stream Call1' */
+  /* Terminate for S-Function (stream_call_block): '<S7>/Stream Call1' */
 
   /* S-Function Block: heli_q8/IMU/IMU/Stream Call1 (stream_call_block) */
   {
@@ -1884,27 +1878,27 @@ void heli_q8_terminate(void)
     FILE *fp = (FILE *) heli_q8_DW.ToFile_PWORK.FilePtr;
     if (fp != (NULL)) {
       char fileName[509] =
-        "p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat";
+        "p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat";
       if (fclose(fp) == EOF) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                          "Error closing MAT-file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
         return;
       }
 
       if ((fp = fopen(fileName, "r+b")) == (NULL)) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error reopening MAT-file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                          "Error reopening MAT-file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
         return;
       }
 
       if (rt_WriteMat4FileHeader(fp, 3, heli_q8_DW.ToFile_IWORK.Count, "ans")) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error writing header for ans to MAT-file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                          "Error writing header for ans to MAT-file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
       }
 
       if (fclose(fp) == EOF) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p3t1_gyro-and-enc-multiple-axis_elevation-rate_elevation-affecting-travel.mat");
+                          "Error closing MAT-file p3t1_acc-and-enc-multiple-axis-transformed_elevation.mat");
         return;
       }
 
@@ -1917,28 +1911,28 @@ void heli_q8_terminate(void)
     FILE *fp = (FILE *) heli_q8_DW.ToFile1_PWORK.FilePtr;
     if (fp != (NULL)) {
       char fileName[509] =
-        "p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat";
+        "p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat";
       if (fclose(fp) == EOF) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                          "Error closing MAT-file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
         return;
       }
 
       if ((fp = fopen(fileName, "r+b")) == (NULL)) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error reopening MAT-file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                          "Error reopening MAT-file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
         return;
       }
 
       if (rt_WriteMat4FileHeader(fp, 3, heli_q8_DW.ToFile1_IWORK.Count, "ans"))
       {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error writing header for ans to MAT-file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                          "Error writing header for ans to MAT-file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
       }
 
       if (fclose(fp) == EOF) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p3t1_gyro-and-enc-multiple-axis_pitch-rate_elevation-affecting-travel.mat");
+                          "Error closing MAT-file p3t1_acc-and-enc-multiple-axis-transformed_pitch.mat");
         return;
       }
 
@@ -1951,28 +1945,28 @@ void heli_q8_terminate(void)
     FILE *fp = (FILE *) heli_q8_DW.ToFile2_PWORK.FilePtr;
     if (fp != (NULL)) {
       char fileName[509] =
-        "p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat";
+        "p3t1_acc-and-enc-multiple-axis-transformed_travel.mat";
       if (fclose(fp) == EOF) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                          "Error closing MAT-file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
         return;
       }
 
       if ((fp = fopen(fileName, "r+b")) == (NULL)) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error reopening MAT-file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                          "Error reopening MAT-file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
         return;
       }
 
       if (rt_WriteMat4FileHeader(fp, 3, heli_q8_DW.ToFile2_IWORK.Count, "ans"))
       {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error writing header for ans to MAT-file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                          "Error writing header for ans to MAT-file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
       }
 
       if (fclose(fp) == EOF) {
         rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p3t1_gyro-and-enc-multiple-axis_travel-rate_elevation-affecting-travel.mat");
+                          "Error closing MAT-file p3t1_acc-and-enc-multiple-axis-transformed_travel.mat");
         return;
       }
 
@@ -1980,7 +1974,7 @@ void heli_q8_terminate(void)
     }
   }
 
-  /* Terminate for S-Function (game_controller_block): '<S9>/Game Controller' */
+  /* Terminate for S-Function (game_controller_block): '<S11>/Game Controller' */
 
   /* S-Function Block: heli_q8/Reference values/Joystick/Game Controller (game_controller_block) */
   {
@@ -2130,15 +2124,15 @@ RT_MODEL_heli_q8_T *heli_q8(void)
   heli_q8_M->Timing.stepSize2 = 0.01;
 
   /* External mode info */
-  heli_q8_M->Sizes.checksums[0] = (1848313531U);
-  heli_q8_M->Sizes.checksums[1] = (116729593U);
-  heli_q8_M->Sizes.checksums[2] = (1296670226U);
-  heli_q8_M->Sizes.checksums[3] = (2535152233U);
+  heli_q8_M->Sizes.checksums[0] = (489334851U);
+  heli_q8_M->Sizes.checksums[1] = (817852607U);
+  heli_q8_M->Sizes.checksums[2] = (3874044471U);
+  heli_q8_M->Sizes.checksums[3] = (2711042968U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[5];
+    static const sysRanDType *systemRan[6];
     heli_q8_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
@@ -2146,6 +2140,7 @@ RT_MODEL_heli_q8_T *heli_q8(void)
     systemRan[2] = &rtAlwaysEnabled;
     systemRan[3] = &rtAlwaysEnabled;
     systemRan[4] = &rtAlwaysEnabled;
+    systemRan[5] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(heli_q8_M->extModeInfo,
       &heli_q8_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(heli_q8_M->extModeInfo, heli_q8_M->Sizes.checksums);
@@ -2168,31 +2163,27 @@ RT_MODEL_heli_q8_T *heli_q8(void)
       heli_q8_B.Switch[i] = 0.0;
     }
 
-    heli_q8_B.Gain1[0] = 0.0;
-    heli_q8_B.Gain1[1] = 0.0;
-    heli_q8_B.Gain1[2] = 0.0;
+    heli_q8_B.Switch_i[0] = 0.0;
+    heli_q8_B.Switch_i[1] = 0.0;
+    heli_q8_B.Switch_i[2] = 0.0;
     heli_q8_B.ElevationCounttorad = 0.0;
-    heli_q8_B.ElevationTransferFcn = 0.0;
     heli_q8_B.TmpSignalConversionAtToFileInpo[0] = 0.0;
     heli_q8_B.TmpSignalConversionAtToFileInpo[1] = 0.0;
     heli_q8_B.PitchCounttorad = 0.0;
-    heli_q8_B.PitchTransferFcn = 0.0;
     heli_q8_B.TmpSignalConversionAtToFile1Inp[0] = 0.0;
     heli_q8_B.TmpSignalConversionAtToFile1Inp[1] = 0.0;
     heli_q8_B.TravelCounttorad = 0.0;
-    heli_q8_B.TravelTransferFcn = 0.0;
     heli_q8_B.TmpSignalConversionAtToFile2Inp[0] = 0.0;
     heli_q8_B.TmpSignalConversionAtToFile2Inp[1] = 0.0;
+    heli_q8_B.ElevationTransferFcn = 0.0;
+    heli_q8_B.PitchTransferFcn = 0.0;
+    heli_q8_B.TravelTransferFcn = 0.0;
     heli_q8_B.FrontmotorSaturation = 0.0;
     heli_q8_B.BackmotorSaturation = 0.0;
-    heli_q8_B.Gain2[0] = 0.0;
-    heli_q8_B.Gain2[1] = 0.0;
-    heli_q8_B.Gain2[2] = 0.0;
-    heli_q8_B.Constant = 0.0;
     heli_q8_B.Constant4 = 0.0;
     heli_q8_B.Sum2 = 0.0;
     heli_q8_B.Switch_p = 0.0;
-    heli_q8_B.Constant_o = 0.0;
+    heli_q8_B.Constant = 0.0;
     heli_q8_B.Constant1 = 0.0;
     heli_q8_B.Sum1 = 0.0;
     heli_q8_B.Switch1 = 0.0;
@@ -2334,9 +2325,9 @@ RT_MODEL_heli_q8_T *heli_q8(void)
   heli_q8_M->Sizes.numU = (0);         /* Number of model inputs */
   heli_q8_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   heli_q8_M->Sizes.numSampTimes = (3); /* Number of sample times */
-  heli_q8_M->Sizes.numBlocks = (98);   /* Number of blocks */
-  heli_q8_M->Sizes.numBlockIO = (33);  /* Number of block outputs */
-  heli_q8_M->Sizes.numBlockPrms = (466);/* Sum of parameter "widths" */
+  heli_q8_M->Sizes.numBlocks = (101);  /* Number of blocks */
+  heli_q8_M->Sizes.numBlockIO = (31);  /* Number of block outputs */
+  heli_q8_M->Sizes.numBlockPrms = (463);/* Sum of parameter "widths" */
   return heli_q8_M;
 }
 

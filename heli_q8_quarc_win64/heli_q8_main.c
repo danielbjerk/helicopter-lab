@@ -4,8 +4,8 @@
  * This file was generated automatically by QUARC. It serves as the main
  * entry point for the real-time code.
  *
- * Date:           Sun Sep 06 17:45:00 2020
- * Model version:  1.126
+ * Date:           Tue Oct 13 11:38:21 2020
+ * Model version:  1.197
  * Matlab version: 8.9 (R2015b) 13-Aug-2015
  ****************************************************************************/
 
@@ -281,6 +281,11 @@ static void
    */
   GBLbuf.stopExecutionFlag = 1;
   rtExtModeStart();
+
+  {
+    stream_shutdown(heli_q8_DW.StreamCall1_Stream);
+  }
+
   hil_task_stop(heli_q8_DW.HILReadEncoderTimebase_Task)
     ;
 }
@@ -576,6 +581,10 @@ int
           string_format(GBLbuf.message, sizeof(GBLbuf.message),
                         "Unable to start timebase. %s", GBLbuf.submessage);
           rtmSetErrorStatus(S, GBLbuf.message);
+        }
+
+        {
+          stream_shutdown(heli_q8_DW.StreamCall1_Stream);
         }
 
         /* Do NOT use the subrate_index variable for this loop! */

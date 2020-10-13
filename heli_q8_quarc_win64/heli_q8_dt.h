@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.126
+ * Model version              : 1.197
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Sun Sep 06 17:45:01 2020
+ * C source code generated on : Tue Oct 13 11:38:22 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -36,6 +36,14 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(pointer_T),
   sizeof(action_T),
   2*sizeof(uint32_T),
+  sizeof(t_stream),
+  sizeof(t_stream_ptr),
+  sizeof(intmax_t),
+  sizeof(ptrdiff_t),
+  sizeof(size_t),
+  sizeof(t_int64),
+  sizeof(t_uint64),
+  sizeof(t_wide_char),
   sizeof(t_game_controller),
   sizeof(t_card),
   sizeof(t_task)
@@ -57,6 +65,14 @@ static const char_T * rtDataTypeNames[] = {
   "pointer_T",
   "action_T",
   "timer_uint32_pair_T",
+  "t_stream",
+  "t_stream_ptr",
+  "intmax_t",
+  "ptrdiff_t",
+  "size_t",
+  "t_int64",
+  "t_uint64",
+  "t_wide_char",
   "t_game_controller",
   "t_card",
   "t_task"
@@ -64,35 +80,43 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&heli_q8_B.RateTransitiony), 0, 0, 33 }
+  { (char_T *)(&heli_q8_B.Switch[0]), 0, 0, 45 },
+
+  { (char_T *)(&heli_q8_B.StreamCall1_o2), 3, 0, 1 }
   ,
 
-  { (char_T *)(&heli_q8_DW.HILInitialize_AIMinimums[0]), 0, 0, 68 },
+  { (char_T *)(&heli_q8_DW.HILInitialize_AIMinimums[0]), 0, 0, 78 },
 
-  { (char_T *)(&heli_q8_DW.GameController_Controller), 14, 0, 1 },
+  { (char_T *)(&heli_q8_DW.StreamCall1_Stream), 14, 0, 1 },
 
-  { (char_T *)(&heli_q8_DW.HILInitialize_Card), 15, 0, 1 },
+  { (char_T *)(&heli_q8_DW.GameController_Controller), 22, 0, 1 },
 
-  { (char_T *)(&heli_q8_DW.HILReadEncoderTimebase_Task), 16, 0, 1 },
+  { (char_T *)(&heli_q8_DW.HILInitialize_Card), 23, 0, 1 },
 
-  { (char_T *)(&heli_q8_DW.Elevationrate_PWORK.LoggedData), 11, 0, 15 },
+  { (char_T *)(&heli_q8_DW.HILReadEncoderTimebase_Task), 24, 0, 1 },
 
-  { (char_T *)(&heli_q8_DW.HILInitialize_ClockModes[0]), 6, 0, 46 },
+  { (char_T *)(&heli_q8_DW.TransportDelay_RWORK.modelTStart), 0, 0, 2 },
+
+  { (char_T *)(&heli_q8_DW.Elevationrate_PWORK.LoggedData), 11, 0, 25 },
+
+  { (char_T *)(&heli_q8_DW.HILInitialize_ClockModes[0]), 6, 0, 48 },
 
   { (char_T *)(&heli_q8_DW.HILInitialize_POSortedChans[0]), 7, 0, 8 },
 
-  { (char_T *)(&heli_q8_DW.ToFile_IWORK.Count), 10, 0, 2 }
+  { (char_T *)(&heli_q8_DW.ToFile_IWORK.Count), 10, 0, 5 },
+
+  { (char_T *)(&heli_q8_DW.StreamCall1_State), 3, 0, 1 }
 };
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  9U,
+  13U,
   rtBTransitions
 };
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
-  { (char_T *)(&heli_q8_P.F[0]), 0, 0, 31 },
+  { (char_T *)(&heli_q8_P.Joystick_gain_x), 0, 0, 23 },
 
   { (char_T *)(&heli_q8_P.HILReadEncoderTimebase_clock), 6, 0, 10 },
 
@@ -100,18 +124,22 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&heli_q8_P.HILInitialize_active), 8, 0, 35 },
 
-  { (char_T *)(&heli_q8_P.RateTransitiony_X0), 0, 0, 30 },
+  { (char_T *)(&heli_q8_P.Constant_Value), 0, 0, 87 },
+
+  { (char_T *)(&heli_q8_P.StreamCall1_SendBufferSize), 6, 0, 2 },
+
+  { (char_T *)(&heli_q8_P.StreamFormattedWrite_MaxUnits), 7, 0, 1 },
 
   { (char_T *)(&heli_q8_P.GameController_BufferSize), 5, 0, 1 },
 
-  { (char_T *)(&heli_q8_P.GameController_ControllerNumber), 3, 0, 1 },
+  { (char_T *)(&heli_q8_P.StringConstant_Value[0]), 3, 0, 258 },
 
-  { (char_T *)(&heli_q8_P.HILReadEncoderTimebase_Active), 8, 0, 4 }
+  { (char_T *)(&heli_q8_P.HILReadEncoderTimebase_Active), 8, 0, 5 }
 };
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  8U,
+  10U,
   rtPTransitions
 };
 
