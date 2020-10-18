@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.209
+ * Model version              : 1.266
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Tue Oct 13 15:20:55 2020
+ * C source code generated on : Sun Oct 18 19:00:41 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -28,19 +28,10 @@ extern t_stream heli_q8_rtZt_stream;
 
 /* A global buffer for storing error messages (defined in quanser_common library) */
 EXTERN char _rt_error_message[512];
-real_T rt_TDelayInterpolate(
-  real_T tMinusDelay,                  /* tMinusDelay = currentSimTime - delay */
-  real_T tStart,
-  real_T *tBuf,
-  real_T *uBuf,
-  int_T bufSz,
-  int_T *lastIdx,
-  int_T oldestIdx,
-  int_T newIdx,
-  real_T initOutput,
-  boolean_T discrete,
-  boolean_T minorStepAndTAtLastMajorOutput)
-  ;
+int_T rt_WriteMat4FileHeader(FILE *fp,
+  int32_T m,
+  int32_T n,
+  const char_T *name);
 void heli_q8_output0(void);
 void heli_q8_update0(void);
 void heli_q8_output2(void);

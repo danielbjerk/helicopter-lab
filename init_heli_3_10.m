@@ -171,6 +171,48 @@ F(2,2) = K(2,3);
 
 
 %% Luenberg observer
+
+K = zeros(2,5);
+F = zeros(2,2);
+
+A = [0  1   0   0   0;
+    0  0   0   0   0;
+    0  0   0   0   0;
+    1  0   0   0   0;
+    0  0   1   0   0];
+
+
+B = [0      0;
+    0      K_1;
+    K_2    0;
+    0      0;
+    0      0];
+
+G = [0      0; 
+    0      0; 
+    0      0;
+    -1     0;
+    0     -1];
+
+
+
+Q = [10  0    0     0    0;
+     0   1    0     0    0;
+     0   0    0.1     0    0;
+     0   0    0     0.5  0;
+     0   0    0     0    1];
+ 
+R = [0.1  0;
+     0    0.1];
+ 
+K = lqr(A, B, Q, R);
+ 
+F(1,1) = K(1,1);
+F(1,2) = K(1,3);
+F(2,1) = K(2,1);
+F(2,2) = K(2,3);
+
+
 sys_speed = max(abs(real(eig(A-B*K))));
 
 
@@ -186,22 +228,24 @@ B = [0  0;
     K_2 0;
     0   0];
 
-C = [0  0   1   0   0;
+C = [1  0   0   0   0;
+    0   1   0   0   0;
+    0   0   1   0   0;
+    0   0   0   1   0;
     0   0   0   0   1];
 
-L = zeros(5,2);
+L = zeros(5,5);
 
-sys_amp = 3;
-pole_angle = 1;
+sys_amp = 10;
+pole_angle = 30;
 deg2rad = pi / 180;
 p = (-1)*sys_amp*sys_speed*[1 exp(-1*pole_angle*deg2rad*1i) exp(-2*pole_angle*deg2rad*1i) exp(1*pole_angle*deg2rad*1i) exp(2*pole_angle*deg2rad*1i)];
 
-p = [-sqrt(9) -2+1i -2-1i -5+2i -5-2i];
 
-close all
-plot(p, '*');
-xlim([-10 1]);
-ylim([-5.5 5.5]);
-grid on
+% close all
+% plot(p, '*');
+% xlim([-10 1]);
+% ylim([-5.5 5.5]);
+% grid on
 
 L = place(A',C',p)';

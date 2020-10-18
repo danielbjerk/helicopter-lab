@@ -1,0 +1,23 @@
+function euler_angles = euler_angles_from_accelerometer(accelerometer, l_dot, e)
+%#codegen
+    x = accelerometer(1);
+    y = accelerometer(2);
+    z = accelerometer(3);
+    
+    l_h = 0.66;
+    a_c = l_dot.^2*l_h;
+    
+    if (z == 0)
+        x_out = 0;
+    else
+        x_out = atan(y/z);
+    end
+    
+    if ((y.^2 + (z+a_c*sin(e)) == 0))
+        y_out = 0;
+    else
+        %y_out = atan(x/sqrt(y.^2 + z.^2));     % old implementation
+        y_out = atan((x+a_c*cos(e))/sqrt(y.^2 + (z+a_c*sin(e)).^2));
+    end
+    
+euler_angles = [x_out y_out 0];
