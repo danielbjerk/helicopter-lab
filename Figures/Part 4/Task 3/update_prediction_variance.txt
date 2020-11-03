@@ -1,0 +1,3 @@
+function P_pred_k_plus_1 = fcn(P_est_k, A_d, Q_d)
+P_pred_k_plus_1 = zeros(6,6);
+P_pred_k_plus_1 = A_d*P_est_k*A_d' + Q_d;

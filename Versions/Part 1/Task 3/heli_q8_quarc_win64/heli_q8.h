@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.101
+ * Model version              : 1.103
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Tue Sep 29 12:52:02 2020
+ * C source code generated on : Tue Nov 03 19:55:36 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,12 +20,9 @@
 
 #ifndef RTW_HEADER_heli_q8_h_
 #define RTW_HEADER_heli_q8_h_
-#include <stddef.h>
 #include <string.h>
 #ifndef heli_q8_COMMON_INCLUDES_
 # define heli_q8_COMMON_INCLUDES_
-#include <stdio.h>
-#include <string.h>
 #include "rtwtypes.h"
 #include "zero_crossing_types.h"
 #include "simstruc.h"
@@ -877,10 +874,6 @@ typedef struct {
   } Pitch_PWORK;                       /* '<Root>/Pitch' */
 
   struct {
-    void *FilePtr;
-  } ToFile_PWORK;                      /* '<Root>/To File' */
-
-  struct {
     void *LoggedData;
   } ElevationScoperads_PWORK;          /* '<S3>/Elevation: Scope [rad//s]' */
 
@@ -925,10 +918,6 @@ typedef struct {
   int32_T HILInitialize_POPolarityVals[8];/* '<Root>/HIL Initialize' */
   int32_T HILReadEncoderTimebase_Buffer[3];/* '<S3>/HIL Read Encoder Timebase' */
   uint32_T HILInitialize_POSortedChans[8];/* '<Root>/HIL Initialize' */
-  struct {
-    int_T Count;
-    int_T Decimation;
-  } ToFile_IWORK;                      /* '<Root>/To File' */
 } DW_heli_q8_T;
 
 /* Continuous states (auto storage) */

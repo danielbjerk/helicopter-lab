@@ -1,0 +1,2 @@
+function K_k = fcn(P_pred_k, C_d, R_d)
+K_k = P_pred_k*C_d'*(C_d*P_pred_k*C_d' + R_d)^(-1);

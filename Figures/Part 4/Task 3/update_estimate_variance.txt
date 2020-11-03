@@ -1,0 +1,8 @@
+function P_est_k = fcn(P_pred_k, K_k, new_data, C_d, R_d)
+P_est_k = zeros(6,6);
+if ~new_data
+    P_est_k = P_pred_k;
+else
+    temp = (eye(size(K_k,1)) - K_k*C_d);
+    P_est_k = temp*P_pred_k*temp' + K_k*R_d*K_k';
+end

@@ -94,6 +94,10 @@ p = [p_1 p_2 p_3];
 
 K = place(A,B,p);
 
+F(1,1) = K(1,1);
+F(1,2) = K(1,3);
+F(2,1) = K(2,1);
+F(2,2) = K(2,3);
 
 %% LQR method of control, no integral (p2t3)
 K = zeros(2,3);
@@ -170,6 +174,7 @@ F(2,2) = K(2,3);
 % F(2,2) = 1;
 
 
+%%%%%%%%%   Estimation
 %% Luenberg observer
 
 K = zeros(2,5);
@@ -194,16 +199,14 @@ G = [0      0;
     -1     0;
     0     -1];
 
-
-
 Q = [10  0    0     0    0;
      0   1    0     0    0;
-     0   0    0.1     0    0;
+     0   0    1     0    0;
      0   0    0     0.5  0;
-     0   0    0     0    1];
+     0   0    0     0    100];
  
 R = [0.1  0;
-     0    0.1];
+     0    0.1]; % Good matrix for encoder feedback
  
 K = lqr(A, B, Q, R);
  
@@ -213,7 +216,8 @@ F(2,1) = K(2,1);
 F(2,2) = K(2,3);
 
 
-sys_speed = max(abs(real(eig(A-B*K))));
+sys_speed = max(abs(real(eig(A-B*K)))); % Should work? Changes when tuning
+%sys_speed = 1.7743;  % Value found with old "good" LQR tunning
 
 
 A = [0  1   0   0   0;
@@ -234,10 +238,12 @@ C = [1  0   0   0   0;
     0   0   0   1   0;
     0   0   0   0   1];
 
+D = zeros(5,2);
+
 L = zeros(5,5);
 
-sys_amp = 10;
-pole_angle = 30;
+sys_amp = 20;
+pole_angle = 15;
 deg2rad = pi / 180;
 p = (-1)*sys_amp*sys_speed*[1 exp(-1*pole_angle*deg2rad*1i) exp(-2*pole_angle*deg2rad*1i) exp(1*pole_angle*deg2rad*1i) exp(2*pole_angle*deg2rad*1i)];
 
@@ -249,3 +255,39 @@ p = (-1)*sys_amp*sys_speed*[1 exp(-1*pole_angle*deg2rad*1i) exp(-2*pole_angle*de
 % grid on
 
 L = place(A',C',p)';
+
+
+%% Discretization
+A_k = [0  1   0   0   0   0;
+    0   0   0   0   0   0;
+    0   0   0   1   0   0;
+    0   0   0   0   0   0;
+    0   0   0   0   0   1;
+    K_3 0   0   0   0   0];
+
+B_k = [0  0;
+    0   K_1;
+    0   0;
+    K_2 0;
+    0   0;
+    0   0];
+
+C_k = [1  0   0   0   0   0;
+    0   1   0   0   0   0;
+    0   0   1   0   0   0;
+    0   0   0   1   0   0;
+    0   0   0   0   0   1];
+
+D_k = zeros(5,2);
+
+sys = ss(A_k, B_k, C_k, D_k);
+sysd = c2d(sys, 0.002);
+
+A_d = sysd.A;
+B_d = sysd.B;
+C_d = sysd.C;
+D_d = sysd.D;
+
+R_d = diag([0.0041 6.2566E-4 0.01 0.001 3.4206E-4]);
+
+Q_d = diag([0.000001 0.00000125 0.0000005 0.00000125 0.0001 0.00025]);

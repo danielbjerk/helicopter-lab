@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.101
+ * Model version              : 1.103
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Tue Sep 29 12:52:02 2020
+ * C source code generated on : Tue Nov 03 19:55:36 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -29,10 +29,10 @@ P_heli_q8_T heli_q8_P = {
   0.25,                                /* Variable: Joystick_gain_y
                                         * Referenced by: '<S4>/Joystick_gain_y'
                                         */
-  18.640611188124058,                  /* Variable: K_pd
+  6.2135370627080189,                  /* Variable: K_pd
                                         * Referenced by: '<S5>/Gain3'
                                         */
-  43.920905375275687,                  /* Variable: K_pp
+  4.8801005972528539,                  /* Variable: K_pp
                                         * Referenced by: '<S5>/Gain2'
                                         */
   10.0,                                /* Mask Parameter: HILInitialize_analog_input_maxi

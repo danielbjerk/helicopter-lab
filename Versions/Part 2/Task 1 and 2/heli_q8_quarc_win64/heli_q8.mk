@@ -129,7 +129,7 @@ RELATIVE_PATH_TO_ANCHOR   = ..
 MODELREF_TARGET_TYPE      = NONE
 
 #-- Support for parallel builds
-START_DIR         = C:\Users\danielbb\DOCUME~1\MATLAB\Helilab\Versions\PART2~1\TASK1~1
+START_DIR         = C:\Users\danielbb\DOCUME~1\MATLAB\HELICO~1\Versions\PART2~1\TASK1A~1
 MASTER_ANCHOR_DIR = 
 
 #-- Support multi-instance code

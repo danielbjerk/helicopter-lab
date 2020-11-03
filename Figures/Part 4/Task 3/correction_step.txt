@@ -1,0 +1,7 @@
+function x_est_k = fcn(x_pred_k, K_k, y_k, new_data, C_d)
+    x_est_k = zeros(6,1);
+    if ~new_data
+        x_est_k = x_pred_k;
+    else
+        x_est_k = x_pred_k + K_k*(y_k - C_d*x_pred_k);
+    end

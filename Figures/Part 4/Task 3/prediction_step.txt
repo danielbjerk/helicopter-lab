@@ -1,0 +1,3 @@
+function x_pred_k_plus_1 = fcn(x_est_k, u_k, A_d, B_d)
+x_pred_k_plus_1 = zeros(6, 1);
+x_pred_k_plus_1 = A_dx_est_k+B_du_k;

@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.101
+ * Model version              : 1.103
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Tue Sep 29 12:52:02 2020
+ * C source code generated on : Tue Nov 03 19:55:36 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -35,34 +35,6 @@ DW_heli_q8_T heli_q8_DW;
 RT_MODEL_heli_q8_T heli_q8_M_;
 RT_MODEL_heli_q8_T *const heli_q8_M = &heli_q8_M_;
 static void rate_monotonic_scheduler(void);
-
-/*
- * Writes out MAT-file header.  Returns success or failure.
- * Returns:
- *      0 - success
- *      1 - failure
- */
-int_T rt_WriteMat4FileHeader(FILE *fp, int32_T m, int32_T n, const char *name)
-{
-  typedef enum { ELITTLE_ENDIAN, EBIG_ENDIAN } ByteOrder;
-
-  int16_T one = 1;
-  ByteOrder byteOrder = (*((int8_T *)&one)==1) ? ELITTLE_ENDIAN : EBIG_ENDIAN;
-  int32_T type = (byteOrder == ELITTLE_ENDIAN) ? 0: 1000;
-  int32_T imagf = 0;
-  int32_T name_len = (int32_T)strlen(name) + 1;
-  if ((fwrite(&type, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&m, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&n, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&imagf, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&name_len, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(name, sizeof(char), name_len, fp) == 0)) {
-    return(1);
-  } else {
-    return(0);
-  }
-}                                      /* end rt_WriteMat4FileHeader */
-
 time_T rt_SimUpdateDiscreteEvents(
   int_T rtmNumSampTimes, void *rtmTimingData, int_T *rtmSampleHitPtr, int_T
   *rtmPerTaskSampleHits )
@@ -142,7 +114,6 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
   /* local block i/o variables */
   real_T rtb_HILReadEncoderTimebase_o1;
   real_T rtb_HILReadEncoderTimebase_o2;
-  real_T rtb_TmpSignalConversionAtToFile[2];
   real_T rtb_DeadZonex;
   real_T *lastU;
   real_T rtb_Backgain;
@@ -233,39 +204,6 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
   heli_q8_B.TransferFcn += heli_q8_P.TransferFcn_C *
     heli_q8_X.TransferFcn_CSTATE;
   if (rtmIsMajorTimeStep(heli_q8_M)) {
-    /* SignalConversion: '<Root>/TmpSignal ConversionAtTo FileInport1' */
-    rtb_TmpSignalConversionAtToFile[0] = heli_q8_B.TransferFcn;
-    rtb_TmpSignalConversionAtToFile[1] = heli_q8_B.PitchCounttorad;
-
-    /* ToFile: '<Root>/To File' */
-    if (rtmIsMajorTimeStep(heli_q8_M)) {
-      {
-        if (!(++heli_q8_DW.ToFile_IWORK.Decimation % 1) &&
-            (heli_q8_DW.ToFile_IWORK.Count*3)+1 < 100000000 ) {
-          FILE *fp = (FILE *) heli_q8_DW.ToFile_PWORK.FilePtr;
-          if (fp != (NULL)) {
-            real_T u[3];
-            heli_q8_DW.ToFile_IWORK.Decimation = 0;
-            u[0] = heli_q8_M->Timing.t[1];
-            u[1] = rtb_TmpSignalConversionAtToFile[0];
-            u[2] = rtb_TmpSignalConversionAtToFile[1];
-            if (fwrite(u, sizeof(real_T), 3, fp) != 3) {
-              rtmSetErrorStatus(heli_q8_M,
-                                "Error writing to MAT-file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-              return;
-            }
-
-            if (((++heli_q8_DW.ToFile_IWORK.Count)*3)+1 >= 100000000) {
-              (void)fprintf(stdout,
-                            "*** The ToFile block will stop logging data before\n"
-                            "    the simulation has ended, because it has reached\n"
-                            "    the maximum number of elements (100000000)\n"
-                            "    allowed in MAT-file p1t3_w0=2pi-zeta=1_p-c-and-p.mat.\n");
-            }
-          }
-        }
-      }
-    }
   }
 
   /* Derivative: '<S5>/Derivative' */
@@ -1007,27 +945,6 @@ void heli_q8_initialize(void)
   /* Start for RateTransition: '<S4>/Rate Transition: y' */
   heli_q8_B.RateTransitiony = heli_q8_P.RateTransitiony_X0;
 
-  /* Start for ToFile: '<Root>/To File' */
-  {
-    FILE *fp = (NULL);
-    char fileName[509] = "p1t3_w0=2pi-zeta=1_p-c-and-p.mat";
-    if ((fp = fopen(fileName, "wb")) == (NULL)) {
-      rtmSetErrorStatus(heli_q8_M,
-                        "Error creating .mat file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-      return;
-    }
-
-    if (rt_WriteMat4FileHeader(fp,3,0,"ans")) {
-      rtmSetErrorStatus(heli_q8_M,
-                        "Error writing mat file header to file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-      return;
-    }
-
-    heli_q8_DW.ToFile_IWORK.Count = 0;
-    heli_q8_DW.ToFile_IWORK.Decimation = -1;
-    heli_q8_DW.ToFile_PWORK.FilePtr = fp;
-  }
-
   /* Start for RateTransition: '<S4>/Rate Transition: x' */
   heli_q8_B.RateTransitionx = heli_q8_P.RateTransitionx_X0;
 
@@ -1178,38 +1095,6 @@ void heli_q8_terminate(void)
     hil_monitor_delete_all(heli_q8_DW.HILInitialize_Card);
     hil_close(heli_q8_DW.HILInitialize_Card);
     heli_q8_DW.HILInitialize_Card = NULL;
-  }
-
-  /* Terminate for ToFile: '<Root>/To File' */
-  {
-    FILE *fp = (FILE *) heli_q8_DW.ToFile_PWORK.FilePtr;
-    if (fp != (NULL)) {
-      char fileName[509] = "p1t3_w0=2pi-zeta=1_p-c-and-p.mat";
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-        return;
-      }
-
-      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error reopening MAT-file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 3, heli_q8_DW.ToFile_IWORK.Count, "ans")) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error writing header for ans to MAT-file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-      }
-
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file p1t3_w0=2pi-zeta=1_p-c-and-p.mat");
-        return;
-      }
-
-      heli_q8_DW.ToFile_PWORK.FilePtr = (NULL);
-    }
   }
 
   /* Terminate for S-Function (game_controller_block): '<S4>/Game Controller' */
@@ -1366,10 +1251,10 @@ RT_MODEL_heli_q8_T *heli_q8(void)
   heli_q8_M->Timing.stepSize2 = 0.01;
 
   /* External mode info */
-  heli_q8_M->Sizes.checksums[0] = (917577766U);
-  heli_q8_M->Sizes.checksums[1] = (3822191188U);
-  heli_q8_M->Sizes.checksums[2] = (2388267776U);
-  heli_q8_M->Sizes.checksums[3] = (1872466836U);
+  heli_q8_M->Sizes.checksums[0] = (3495077231U);
+  heli_q8_M->Sizes.checksums[1] = (1623549101U);
+  heli_q8_M->Sizes.checksums[2] = (677532040U);
+  heli_q8_M->Sizes.checksums[3] = (725693984U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -1519,7 +1404,7 @@ RT_MODEL_heli_q8_T *heli_q8(void)
   heli_q8_M->Sizes.numU = (0);         /* Number of model inputs */
   heli_q8_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   heli_q8_M->Sizes.numSampTimes = (3); /* Number of sample times */
-  heli_q8_M->Sizes.numBlocks = (54);   /* Number of blocks */
+  heli_q8_M->Sizes.numBlocks = (52);   /* Number of blocks */
   heli_q8_M->Sizes.numBlockIO = (19);  /* Number of block outputs */
   heli_q8_M->Sizes.numBlockPrms = (147);/* Sum of parameter "widths" */
   return heli_q8_M;

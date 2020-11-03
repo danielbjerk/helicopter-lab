@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.124
+ * Model version              : 1.125
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Sun Sep 06 16:07:56 2020
+ * C source code generated on : Tue Nov 03 19:57:17 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,12 +20,9 @@
 
 #ifndef RTW_HEADER_heli_q8_h_
 #define RTW_HEADER_heli_q8_h_
-#include <stddef.h>
 #include <string.h>
 #ifndef heli_q8_COMMON_INCLUDES_
 # define heli_q8_COMMON_INCLUDES_
-#include <stdio.h>
-#include <string.h>
 #include "rtwtypes.h"
 #include "zero_crossing_types.h"
 #include "simstruc.h"
@@ -829,10 +826,8 @@ typedef struct {
   real_T RateTransitiony;              /* '<S4>/Rate Transition: y' */
   real_T Joystick_gain_y;              /* '<S4>/Joystick_gain_y' */
   real_T TransferFcn;                  /* '<Root>/Transfer Fcn' */
-  real_T TmpSignalConversionAtToFile1Inp[2];
   real_T TransferFcn_d;                /* '<S3>/Transfer Fcn' */
   real_T PitchCounttorad;              /* '<S2>/Pitch: Count to rad' */
-  real_T TmpSignalConversionAtToFileInpo[2];
   real_T Constant1[4];                 /* '<Root>/Constant1' */
   real_T Constant[6];                  /* '<Root>/Constant' */
   real_T PitchTransferFcn;             /* '<S2>/Pitch: Transfer Fcn' */
@@ -884,14 +879,6 @@ typedef struct {
   } Scope1_PWORK;                      /* '<Root>/Scope1' */
 
   struct {
-    void *FilePtr;
-  } ToFile_PWORK;                      /* '<Root>/To File' */
-
-  struct {
-    void *FilePtr;
-  } ToFile1_PWORK;                     /* '<Root>/To File1' */
-
-  struct {
     void *LoggedData;
   } ElevationrateScoperads_PWORK;      /* '<S2>/Elevation rate: Scope [rad//s]' */
 
@@ -932,15 +919,6 @@ typedef struct {
   int32_T HILInitialize_POPolarityVals[8];/* '<Root>/HIL Initialize' */
   int32_T HILReadEncoderTimebase_Buffer[3];/* '<S2>/HIL Read Encoder Timebase' */
   uint32_T HILInitialize_POSortedChans[8];/* '<Root>/HIL Initialize' */
-  struct {
-    int_T Count;
-    int_T Decimation;
-  } ToFile_IWORK;                      /* '<Root>/To File' */
-
-  struct {
-    int_T Count;
-    int_T Decimation;
-  } ToFile1_IWORK;                     /* '<Root>/To File1' */
 } DW_heli_q8_T;
 
 /* Continuous states (auto storage) */
