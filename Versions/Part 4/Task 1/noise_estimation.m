@@ -1,10 +1,10 @@
-start_time = 10;
+start_time = 20;
 start_step = start_time/0.002;
 stop_time = 90;
 stop_step = stop_time/0.002;
 
-input1 = load('p4t1_noise-estimation-laying_full-IMU.mat');
-input2 = load('p4t1_noise-estimation-flying_full-IMU.mat');
+input1 = load('p4t1_noise-estimation-laying-still_full-IMU_v1.mat');
+input2 = load('p4t1_noise-estimation-flying_full-IMU_v2.mat');
 
 input1.ans = input1.ans(:,start_step:stop_step);
 input2.ans = input2.ans(:,start_step:stop_step);
@@ -34,5 +34,5 @@ R_d_33 = cov(e2);
 R_d_44 = cov(e_dot2);
 R_d_55 = cov(l_dot2);
 
-% R_d = cov((input2.ans(2:6,:))');
-R_d = diag([R_d_11 R_d_22 R_d_33 R_d_44 R_d_55]);
+R_d = cov((input2.ans(2:6,:))');
+% R_d = diag([R_d_11 R_d_22 R_d_33 R_d_44 R_d_55]);

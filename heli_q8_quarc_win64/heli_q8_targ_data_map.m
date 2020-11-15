@@ -31,117 +31,117 @@
       section.nData     = 28;
       section.data(28)  = dumData; %prealloc
       
-	  ;% heli_q8_P.A
+	  ;% heli_q8_P.A_d
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% heli_q8_P.B
+	  ;% heli_q8_P.B_d
 	  section.data(2).logicalSrcIdx = 1;
-	  section.data(2).dtTransOffset = 25;
+	  section.data(2).dtTransOffset = 36;
 	
-	  ;% heli_q8_P.C
+	  ;% heli_q8_P.C_d
 	  section.data(3).logicalSrcIdx = 2;
-	  section.data(3).dtTransOffset = 35;
+	  section.data(3).dtTransOffset = 48;
 	
 	  ;% heli_q8_P.F
 	  section.data(4).logicalSrcIdx = 3;
-	  section.data(4).dtTransOffset = 60;
+	  section.data(4).dtTransOffset = 78;
 	
 	  ;% heli_q8_P.Joystick_gain_x
 	  section.data(5).logicalSrcIdx = 4;
-	  section.data(5).dtTransOffset = 64;
+	  section.data(5).dtTransOffset = 82;
 	
 	  ;% heli_q8_P.Joystick_gain_y
 	  section.data(6).logicalSrcIdx = 5;
-	  section.data(6).dtTransOffset = 65;
+	  section.data(6).dtTransOffset = 83;
 	
 	  ;% heli_q8_P.K
 	  section.data(7).logicalSrcIdx = 6;
-	  section.data(7).dtTransOffset = 66;
+	  section.data(7).dtTransOffset = 84;
 	
-	  ;% heli_q8_P.L
+	  ;% heli_q8_P.Q_d
 	  section.data(8).logicalSrcIdx = 7;
-	  section.data(8).dtTransOffset = 76;
+	  section.data(8).dtTransOffset = 94;
+	
+	  ;% heli_q8_P.R_d
+	  section.data(9).logicalSrcIdx = 8;
+	  section.data(9).dtTransOffset = 130;
 	
 	  ;% heli_q8_P.Vs_offset
-	  section.data(9).logicalSrcIdx = 8;
-	  section.data(9).dtTransOffset = 101;
+	  section.data(10).logicalSrcIdx = 9;
+	  section.data(10).dtTransOffset = 155;
 	
 	  ;% heli_q8_P.e_offset
-	  section.data(10).logicalSrcIdx = 9;
-	  section.data(10).dtTransOffset = 102;
+	  section.data(11).logicalSrcIdx = 10;
+	  section.data(11).dtTransOffset = 156;
 	
 	  ;% heli_q8_P.HILInitialize_analog_input_maxi
-	  section.data(11).logicalSrcIdx = 10;
-	  section.data(11).dtTransOffset = 103;
+	  section.data(12).logicalSrcIdx = 11;
+	  section.data(12).dtTransOffset = 157;
 	
 	  ;% heli_q8_P.HILInitialize_analog_input_mini
-	  section.data(12).logicalSrcIdx = 11;
-	  section.data(12).dtTransOffset = 104;
+	  section.data(13).logicalSrcIdx = 12;
+	  section.data(13).dtTransOffset = 158;
 	
 	  ;% heli_q8_P.HILInitialize_analog_output_max
-	  section.data(13).logicalSrcIdx = 12;
-	  section.data(13).dtTransOffset = 105;
+	  section.data(14).logicalSrcIdx = 13;
+	  section.data(14).dtTransOffset = 159;
 	
 	  ;% heli_q8_P.HILInitialize_analog_output_min
-	  section.data(14).logicalSrcIdx = 13;
-	  section.data(14).dtTransOffset = 106;
-	
-	  ;% heli_q8_P.CompareToConstant_const
 	  section.data(15).logicalSrcIdx = 14;
-	  section.data(15).dtTransOffset = 107;
+	  section.data(15).dtTransOffset = 160;
 	
 	  ;% heli_q8_P.HILInitialize_final_analog_outp
 	  section.data(16).logicalSrcIdx = 15;
-	  section.data(16).dtTransOffset = 108;
+	  section.data(16).dtTransOffset = 161;
 	
 	  ;% heli_q8_P.HILInitialize_final_pwm_outputs
 	  section.data(17).logicalSrcIdx = 16;
-	  section.data(17).dtTransOffset = 109;
+	  section.data(17).dtTransOffset = 162;
 	
 	  ;% heli_q8_P.HILInitialize_initial_analog_ou
 	  section.data(18).logicalSrcIdx = 17;
-	  section.data(18).dtTransOffset = 110;
+	  section.data(18).dtTransOffset = 163;
 	
 	  ;% heli_q8_P.HILInitialize_initial_pwm_outpu
 	  section.data(19).logicalSrcIdx = 18;
-	  section.data(19).dtTransOffset = 111;
+	  section.data(19).dtTransOffset = 164;
 	
 	  ;% heli_q8_P.HILInitialize_pwm_frequency
 	  section.data(20).logicalSrcIdx = 19;
-	  section.data(20).dtTransOffset = 112;
+	  section.data(20).dtTransOffset = 165;
 	
 	  ;% heli_q8_P.HILInitialize_pwm_leading_deadb
 	  section.data(21).logicalSrcIdx = 20;
-	  section.data(21).dtTransOffset = 113;
+	  section.data(21).dtTransOffset = 166;
 	
 	  ;% heli_q8_P.HILInitialize_pwm_trailing_dead
 	  section.data(22).logicalSrcIdx = 21;
-	  section.data(22).dtTransOffset = 114;
+	  section.data(22).dtTransOffset = 167;
 	
 	  ;% heli_q8_P.HILInitialize_set_other_outputs
 	  section.data(23).logicalSrcIdx = 22;
-	  section.data(23).dtTransOffset = 115;
+	  section.data(23).dtTransOffset = 168;
 	
 	  ;% heli_q8_P.HILInitialize_set_other_outpu_m
 	  section.data(24).logicalSrcIdx = 23;
-	  section.data(24).dtTransOffset = 116;
+	  section.data(24).dtTransOffset = 169;
 	
 	  ;% heli_q8_P.HILInitialize_set_other_outpu_k
 	  section.data(25).logicalSrcIdx = 24;
-	  section.data(25).dtTransOffset = 117;
+	  section.data(25).dtTransOffset = 170;
 	
 	  ;% heli_q8_P.HILInitialize_set_other_outpu_j
 	  section.data(26).logicalSrcIdx = 25;
-	  section.data(26).dtTransOffset = 118;
+	  section.data(26).dtTransOffset = 171;
 	
 	  ;% heli_q8_P.HILInitialize_watchdog_analog_o
 	  section.data(27).logicalSrcIdx = 26;
-	  section.data(27).dtTransOffset = 119;
+	  section.data(27).dtTransOffset = 172;
 	
 	  ;% heli_q8_P.HILInitialize_watchdog_pwm_outp
 	  section.data(28).logicalSrcIdx = 27;
-	  section.data(28).dtTransOffset = 120;
+	  section.data(28).dtTransOffset = 173;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(1) = section;
@@ -372,196 +372,192 @@
       paramMap.sections(4) = section;
       clear section
       
-      section.nData     = 47;
-      section.data(47)  = dumData; %prealloc
+      section.nData     = 46;
+      section.data(46)  = dumData; %prealloc
       
-	  ;% heli_q8_P.Constant_Value
+	  ;% heli_q8_P.Constant1_Value
 	  section.data(1).logicalSrcIdx = 79;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% heli_q8_P.TransferFcn_A
+	  ;% heli_q8_P.Constant_Value
 	  section.data(2).logicalSrcIdx = 80;
 	  section.data(2).dtTransOffset = 1;
 	
-	  ;% heli_q8_P.TransferFcn_C
+	  ;% heli_q8_P.Constant1_Value_c
 	  section.data(3).logicalSrcIdx = 81;
 	  section.data(3).dtTransOffset = 2;
 	
-	  ;% heli_q8_P.TransferFcn1_A
+	  ;% heli_q8_P.Memory_X0
 	  section.data(4).logicalSrcIdx = 82;
 	  section.data(4).dtTransOffset = 3;
 	
-	  ;% heli_q8_P.TransferFcn1_C
-	  section.data(5).logicalSrcIdx = 83;
-	  section.data(5).dtTransOffset = 4;
-	
-	  ;% heli_q8_P.ElevationCounttorad_Gain
-	  section.data(6).logicalSrcIdx = 84;
-	  section.data(6).dtTransOffset = 5;
-	
-	  ;% heli_q8_P.Constant_Value_k
-	  section.data(7).logicalSrcIdx = 85;
-	  section.data(7).dtTransOffset = 6;
-	
-	  ;% heli_q8_P.Constant1_Value
-	  section.data(8).logicalSrcIdx = 86;
-	  section.data(8).dtTransOffset = 7;
-	
-	  ;% heli_q8_P.Memory_X0
-	  section.data(9).logicalSrcIdx = 87;
-	  section.data(9).dtTransOffset = 8;
-	
 	  ;% heli_q8_P.Gain1_Gain
-	  section.data(10).logicalSrcIdx = 88;
-	  section.data(10).dtTransOffset = 18;
-	
-	  ;% heli_q8_P.PitchCounttorad_Gain
-	  section.data(11).logicalSrcIdx = 89;
-	  section.data(11).dtTransOffset = 27;
-	
-	  ;% heli_q8_P.TravelCounttorad_Gain
-	  section.data(12).logicalSrcIdx = 90;
-	  section.data(12).dtTransOffset = 28;
-	
-	  ;% heli_q8_P.Integrator_IC
-	  section.data(13).logicalSrcIdx = 91;
-	  section.data(13).dtTransOffset = 29;
-	
-	  ;% heli_q8_P.ElevationTransferFcn_A
-	  section.data(14).logicalSrcIdx = 92;
-	  section.data(14).dtTransOffset = 30;
-	
-	  ;% heli_q8_P.ElevationTransferFcn_C
-	  section.data(15).logicalSrcIdx = 93;
-	  section.data(15).dtTransOffset = 31;
-	
-	  ;% heli_q8_P.ElevationTransferFcn_D
-	  section.data(16).logicalSrcIdx = 94;
-	  section.data(16).dtTransOffset = 32;
+	  section.data(5).logicalSrcIdx = 83;
+	  section.data(5).dtTransOffset = 13;
 	
 	  ;% heli_q8_P.Gain2_Gain
+	  section.data(6).logicalSrcIdx = 84;
+	  section.data(6).dtTransOffset = 22;
+	
+	  ;% heli_q8_P.Memory2_X0
+	  section.data(7).logicalSrcIdx = 85;
+	  section.data(7).dtTransOffset = 31;
+	
+	  ;% heli_q8_P.Constant_Value_a
+	  section.data(8).logicalSrcIdx = 86;
+	  section.data(8).dtTransOffset = 32;
+	
+	  ;% heli_q8_P.Constant1_Value_a
+	  section.data(9).logicalSrcIdx = 87;
+	  section.data(9).dtTransOffset = 33;
+	
+	  ;% heli_q8_P.Constant2_Value
+	  section.data(10).logicalSrcIdx = 88;
+	  section.data(10).dtTransOffset = 34;
+	
+	  ;% heli_q8_P.DataStoreMemory_InitialValue
+	  section.data(11).logicalSrcIdx = 89;
+	  section.data(11).dtTransOffset = 35;
+	
+	  ;% heli_q8_P.ElevationCounttorad_Gain
+	  section.data(12).logicalSrcIdx = 90;
+	  section.data(12).dtTransOffset = 36;
+	
+	  ;% heli_q8_P.UnitDelay_InitialCondition
+	  section.data(13).logicalSrcIdx = 91;
+	  section.data(13).dtTransOffset = 37;
+	
+	  ;% heli_q8_P.UnitDelay1_InitialCondition
+	  section.data(14).logicalSrcIdx = 92;
+	  section.data(14).dtTransOffset = 43;
+	
+	  ;% heli_q8_P.ElevationTransferFcn_A
+	  section.data(15).logicalSrcIdx = 93;
+	  section.data(15).dtTransOffset = 44;
+	
+	  ;% heli_q8_P.ElevationTransferFcn_C
+	  section.data(16).logicalSrcIdx = 94;
+	  section.data(16).dtTransOffset = 45;
+	
+	  ;% heli_q8_P.ElevationTransferFcn_D
 	  section.data(17).logicalSrcIdx = 95;
-	  section.data(17).dtTransOffset = 33;
-	
-	  ;% heli_q8_P.PitchTransferFcn_A
-	  section.data(18).logicalSrcIdx = 96;
-	  section.data(18).dtTransOffset = 42;
-	
-	  ;% heli_q8_P.PitchTransferFcn_C
-	  section.data(19).logicalSrcIdx = 97;
-	  section.data(19).dtTransOffset = 43;
-	
-	  ;% heli_q8_P.PitchTransferFcn_D
-	  section.data(20).logicalSrcIdx = 98;
-	  section.data(20).dtTransOffset = 44;
-	
-	  ;% heli_q8_P.TravelTransferFcn_A
-	  section.data(21).logicalSrcIdx = 99;
-	  section.data(21).dtTransOffset = 45;
-	
-	  ;% heli_q8_P.TravelTransferFcn_C
-	  section.data(22).logicalSrcIdx = 100;
-	  section.data(22).dtTransOffset = 46;
-	
-	  ;% heli_q8_P.TravelTransferFcn_D
-	  section.data(23).logicalSrcIdx = 101;
-	  section.data(23).dtTransOffset = 47;
-	
-	  ;% heli_q8_P.Integrator2_IC
-	  section.data(24).logicalSrcIdx = 102;
-	  section.data(24).dtTransOffset = 48;
-	
-	  ;% heli_q8_P.TransferFcn_A_p
-	  section.data(25).logicalSrcIdx = 103;
-	  section.data(25).dtTransOffset = 49;
-	
-	  ;% heli_q8_P.TransferFcn_C_d
-	  section.data(26).logicalSrcIdx = 104;
-	  section.data(26).dtTransOffset = 50;
-	
-	  ;% heli_q8_P.Step2_Time
-	  section.data(27).logicalSrcIdx = 105;
-	  section.data(27).dtTransOffset = 51;
-	
-	  ;% heli_q8_P.Step2_Y0
-	  section.data(28).logicalSrcIdx = 106;
-	  section.data(28).dtTransOffset = 52;
-	
-	  ;% heli_q8_P.Step2_YFinal
-	  section.data(29).logicalSrcIdx = 107;
-	  section.data(29).dtTransOffset = 53;
-	
-	  ;% heli_q8_P.Integrator_IC_a
-	  section.data(30).logicalSrcIdx = 108;
-	  section.data(30).dtTransOffset = 54;
-	
-	  ;% heli_q8_P.Integrator1_IC
-	  section.data(31).logicalSrcIdx = 109;
-	  section.data(31).dtTransOffset = 55;
-	
-	  ;% heli_q8_P.Backgain_Gain
-	  section.data(32).logicalSrcIdx = 110;
-	  section.data(32).dtTransOffset = 56;
-	
-	  ;% heli_q8_P.Frontgain_Gain
-	  section.data(33).logicalSrcIdx = 111;
-	  section.data(33).dtTransOffset = 57;
-	
-	  ;% heli_q8_P.FrontmotorSaturation_UpperSat
-	  section.data(34).logicalSrcIdx = 112;
-	  section.data(34).dtTransOffset = 58;
-	
-	  ;% heli_q8_P.FrontmotorSaturation_LowerSat
-	  section.data(35).logicalSrcIdx = 113;
-	  section.data(35).dtTransOffset = 59;
-	
-	  ;% heli_q8_P.BackmotorSaturation_UpperSat
-	  section.data(36).logicalSrcIdx = 114;
-	  section.data(36).dtTransOffset = 60;
-	
-	  ;% heli_q8_P.BackmotorSaturation_LowerSat
-	  section.data(37).logicalSrcIdx = 115;
-	  section.data(37).dtTransOffset = 61;
-	
-	  ;% heli_q8_P.RateTransitionx_X0
-	  section.data(38).logicalSrcIdx = 116;
-	  section.data(38).dtTransOffset = 62;
-	
-	  ;% heli_q8_P.DeadZonex_Start
-	  section.data(39).logicalSrcIdx = 117;
-	  section.data(39).dtTransOffset = 63;
-	
-	  ;% heli_q8_P.DeadZonex_End
-	  section.data(40).logicalSrcIdx = 118;
-	  section.data(40).dtTransOffset = 64;
-	
-	  ;% heli_q8_P.Gainx_Gain
-	  section.data(41).logicalSrcIdx = 119;
-	  section.data(41).dtTransOffset = 65;
+	  section.data(17).dtTransOffset = 46;
 	
 	  ;% heli_q8_P.RateTransitiony_X0
-	  section.data(42).logicalSrcIdx = 120;
-	  section.data(42).dtTransOffset = 66;
+	  section.data(18).logicalSrcIdx = 96;
+	  section.data(18).dtTransOffset = 47;
 	
 	  ;% heli_q8_P.DeadZoney_Start
-	  section.data(43).logicalSrcIdx = 121;
-	  section.data(43).dtTransOffset = 67;
+	  section.data(19).logicalSrcIdx = 97;
+	  section.data(19).dtTransOffset = 48;
 	
 	  ;% heli_q8_P.DeadZoney_End
-	  section.data(44).logicalSrcIdx = 122;
-	  section.data(44).dtTransOffset = 68;
+	  section.data(20).logicalSrcIdx = 98;
+	  section.data(20).dtTransOffset = 49;
 	
 	  ;% heli_q8_P.Gainy_Gain
+	  section.data(21).logicalSrcIdx = 99;
+	  section.data(21).dtTransOffset = 50;
+	
+	  ;% heli_q8_P.PitchCounttorad_Gain
+	  section.data(22).logicalSrcIdx = 100;
+	  section.data(22).dtTransOffset = 51;
+	
+	  ;% heli_q8_P.PitchTransferFcn_A
+	  section.data(23).logicalSrcIdx = 101;
+	  section.data(23).dtTransOffset = 52;
+	
+	  ;% heli_q8_P.PitchTransferFcn_C
+	  section.data(24).logicalSrcIdx = 102;
+	  section.data(24).dtTransOffset = 53;
+	
+	  ;% heli_q8_P.PitchTransferFcn_D
+	  section.data(25).logicalSrcIdx = 103;
+	  section.data(25).dtTransOffset = 54;
+	
+	  ;% heli_q8_P.TransferFcn_A
+	  section.data(26).logicalSrcIdx = 104;
+	  section.data(26).dtTransOffset = 55;
+	
+	  ;% heli_q8_P.TransferFcn_C
+	  section.data(27).logicalSrcIdx = 105;
+	  section.data(27).dtTransOffset = 56;
+	
+	  ;% heli_q8_P.TravelCounttorad_Gain
+	  section.data(28).logicalSrcIdx = 106;
+	  section.data(28).dtTransOffset = 57;
+	
+	  ;% heli_q8_P.TravelTransferFcn_A
+	  section.data(29).logicalSrcIdx = 107;
+	  section.data(29).dtTransOffset = 58;
+	
+	  ;% heli_q8_P.TravelTransferFcn_C
+	  section.data(30).logicalSrcIdx = 108;
+	  section.data(30).dtTransOffset = 59;
+	
+	  ;% heli_q8_P.TravelTransferFcn_D
+	  section.data(31).logicalSrcIdx = 109;
+	  section.data(31).dtTransOffset = 60;
+	
+	  ;% heli_q8_P.Integrator2_IC
+	  section.data(32).logicalSrcIdx = 110;
+	  section.data(32).dtTransOffset = 61;
+	
+	  ;% heli_q8_P.TransferFcn_A_p
+	  section.data(33).logicalSrcIdx = 111;
+	  section.data(33).dtTransOffset = 62;
+	
+	  ;% heli_q8_P.TransferFcn_C_d
+	  section.data(34).logicalSrcIdx = 112;
+	  section.data(34).dtTransOffset = 63;
+	
+	  ;% heli_q8_P.Integrator_IC
+	  section.data(35).logicalSrcIdx = 113;
+	  section.data(35).dtTransOffset = 64;
+	
+	  ;% heli_q8_P.Integrator1_IC
+	  section.data(36).logicalSrcIdx = 114;
+	  section.data(36).dtTransOffset = 65;
+	
+	  ;% heli_q8_P.Backgain_Gain
+	  section.data(37).logicalSrcIdx = 115;
+	  section.data(37).dtTransOffset = 66;
+	
+	  ;% heli_q8_P.Frontgain_Gain
+	  section.data(38).logicalSrcIdx = 116;
+	  section.data(38).dtTransOffset = 67;
+	
+	  ;% heli_q8_P.FrontmotorSaturation_UpperSat
+	  section.data(39).logicalSrcIdx = 117;
+	  section.data(39).dtTransOffset = 68;
+	
+	  ;% heli_q8_P.FrontmotorSaturation_LowerSat
+	  section.data(40).logicalSrcIdx = 118;
+	  section.data(40).dtTransOffset = 69;
+	
+	  ;% heli_q8_P.BackmotorSaturation_UpperSat
+	  section.data(41).logicalSrcIdx = 119;
+	  section.data(41).dtTransOffset = 70;
+	
+	  ;% heli_q8_P.BackmotorSaturation_LowerSat
+	  section.data(42).logicalSrcIdx = 120;
+	  section.data(42).dtTransOffset = 71;
+	
+	  ;% heli_q8_P.RateTransitionx_X0
+	  section.data(43).logicalSrcIdx = 121;
+	  section.data(43).dtTransOffset = 72;
+	
+	  ;% heli_q8_P.DeadZonex_Start
+	  section.data(44).logicalSrcIdx = 122;
+	  section.data(44).dtTransOffset = 73;
+	
+	  ;% heli_q8_P.DeadZonex_End
 	  section.data(45).logicalSrcIdx = 123;
-	  section.data(45).dtTransOffset = 69;
+	  section.data(45).dtTransOffset = 74;
 	
-	  ;% heli_q8_P.TransferFcn_A_d
+	  ;% heli_q8_P.Gainx_Gain
 	  section.data(46).logicalSrcIdx = 124;
-	  section.data(46).dtTransOffset = 70;
-	
-	  ;% heli_q8_P.TransferFcn_C_k
-	  section.data(47).logicalSrcIdx = 125;
-	  section.data(47).dtTransOffset = 71;
+	  section.data(46).dtTransOffset = 75;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(5) = section;
@@ -571,11 +567,11 @@
       section.data(2)  = dumData; %prealloc
       
 	  ;% heli_q8_P.StreamCall1_SendBufferSize
-	  section.data(1).logicalSrcIdx = 126;
+	  section.data(1).logicalSrcIdx = 125;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% heli_q8_P.StreamCall1_ReceiveBufferSize
-	  section.data(2).logicalSrcIdx = 127;
+	  section.data(2).logicalSrcIdx = 126;
 	  section.data(2).dtTransOffset = 1;
 	
       nTotData = nTotData + section.nData;
@@ -586,7 +582,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_P.StreamFormattedWrite_MaxUnits
-	  section.data(1).logicalSrcIdx = 128;
+	  section.data(1).logicalSrcIdx = 127;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -597,31 +593,35 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_P.GameController_BufferSize
-	  section.data(1).logicalSrcIdx = 129;
+	  section.data(1).logicalSrcIdx = 128;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(8) = section;
       clear section
       
-      section.nData     = 4;
-      section.data(4)  = dumData; %prealloc
+      section.nData     = 5;
+      section.data(5)  = dumData; %prealloc
       
 	  ;% heli_q8_P.StringConstant_Value
-	  section.data(1).logicalSrcIdx = 130;
+	  section.data(1).logicalSrcIdx = 129;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% heli_q8_P.StreamCall1_URI
-	  section.data(2).logicalSrcIdx = 131;
+	  section.data(2).logicalSrcIdx = 130;
 	  section.data(2).dtTransOffset = 255;
 	
 	  ;% heli_q8_P.StreamCall1_Endian
-	  section.data(3).logicalSrcIdx = 132;
+	  section.data(3).logicalSrcIdx = 131;
 	  section.data(3).dtTransOffset = 256;
 	
-	  ;% heli_q8_P.GameController_ControllerNumber
-	  section.data(4).logicalSrcIdx = 133;
+	  ;% heli_q8_P.ManualSwitch_CurrentSetting
+	  section.data(4).logicalSrcIdx = 132;
 	  section.data(4).dtTransOffset = 257;
+	
+	  ;% heli_q8_P.GameController_ControllerNumber
+	  section.data(5).logicalSrcIdx = 133;
+	  section.data(5).dtTransOffset = 258;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(9) = section;
@@ -695,128 +695,172 @@
     ;%
     ;% Auto data (heli_q8_B)
     ;%
-      section.nData     = 30;
-      section.data(30)  = dumData; %prealloc
+      section.nData     = 41;
+      section.data(41)  = dumData; %prealloc
       
-	  ;% heli_q8_B.TransferFcn
+	  ;% heli_q8_B.Switch
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% heli_q8_B.TransferFcn1
+	  ;% heli_q8_B.Gain1
 	  section.data(2).logicalSrcIdx = 1;
-	  section.data(2).dtTransOffset = 1;
+	  section.data(2).dtTransOffset = 10;
+	
+	  ;% heli_q8_B.Gain2
+	  section.data(3).logicalSrcIdx = 2;
+	  section.data(3).dtTransOffset = 13;
+	
+	  ;% heli_q8_B.Memory2
+	  section.data(4).logicalSrcIdx = 3;
+	  section.data(4).dtTransOffset = 16;
+	
+	  ;% heli_q8_B.Constant
+	  section.data(5).logicalSrcIdx = 4;
+	  section.data(5).dtTransOffset = 17;
+	
+	  ;% heli_q8_B.Constant1
+	  section.data(6).logicalSrcIdx = 5;
+	  section.data(6).dtTransOffset = 18;
+	
+	  ;% heli_q8_B.Constant2
+	  section.data(7).logicalSrcIdx = 6;
+	  section.data(7).dtTransOffset = 19;
 	
 	  ;% heli_q8_B.ElevationCounttorad
-	  section.data(3).logicalSrcIdx = 2;
-	  section.data(3).dtTransOffset = 2;
-	
-	  ;% heli_q8_B.Switch
-	  section.data(4).logicalSrcIdx = 3;
-	  section.data(4).dtTransOffset = 3;
-	
-	  ;% heli_q8_B.PitchCounttorad
-	  section.data(5).logicalSrcIdx = 4;
-	  section.data(5).dtTransOffset = 13;
-	
-	  ;% heli_q8_B.TravelCounttorad
-	  section.data(6).logicalSrcIdx = 5;
-	  section.data(6).dtTransOffset = 14;
-	
-	  ;% heli_q8_B.Integrator
-	  section.data(7).logicalSrcIdx = 6;
-	  section.data(7).dtTransOffset = 15;
-	
-	  ;% heli_q8_B.ElevationTransferFcn
 	  section.data(8).logicalSrcIdx = 7;
 	  section.data(8).dtTransOffset = 20;
 	
-	  ;% heli_q8_B.Switch_i
+	  ;% heli_q8_B.x_k
 	  section.data(9).logicalSrcIdx = 8;
 	  section.data(9).dtTransOffset = 21;
 	
-	  ;% heli_q8_B.PitchTransferFcn
+	  ;% heli_q8_B.ManualSwitch
 	  section.data(10).logicalSrcIdx = 9;
-	  section.data(10).dtTransOffset = 24;
+	  section.data(10).dtTransOffset = 27;
 	
-	  ;% heli_q8_B.TravelTransferFcn
+	  ;% heli_q8_B.Constant5
 	  section.data(11).logicalSrcIdx = 10;
-	  section.data(11).dtTransOffset = 25;
+	  section.data(11).dtTransOffset = 28;
 	
-	  ;% heli_q8_B.Integrator2
+	  ;% heli_q8_B.TmpSignalConversionAtToFileInpo
 	  section.data(12).logicalSrcIdx = 11;
-	  section.data(12).dtTransOffset = 26;
+	  section.data(12).dtTransOffset = 58;
 	
-	  ;% heli_q8_B.TransferFcn_m
+	  ;% heli_q8_B.ElevationTransferFcn
 	  section.data(13).logicalSrcIdx = 12;
-	  section.data(13).dtTransOffset = 28;
-	
-	  ;% heli_q8_B.Step2
-	  section.data(14).logicalSrcIdx = 13;
-	  section.data(14).dtTransOffset = 29;
-	
-	  ;% heli_q8_B.Constant
-	  section.data(15).logicalSrcIdx = 14;
-	  section.data(15).dtTransOffset = 30;
-	
-	  ;% heli_q8_B.Constant1
-	  section.data(16).logicalSrcIdx = 15;
-	  section.data(16).dtTransOffset = 40;
-	
-	  ;% heli_q8_B.Sum
-	  section.data(17).logicalSrcIdx = 16;
-	  section.data(17).dtTransOffset = 44;
-	
-	  ;% heli_q8_B.Sum2
-	  section.data(18).logicalSrcIdx = 17;
-	  section.data(18).dtTransOffset = 45;
-	
-	  ;% heli_q8_B.Vs_offset
-	  section.data(19).logicalSrcIdx = 18;
-	  section.data(19).dtTransOffset = 46;
-	
-	  ;% heli_q8_B.FrontmotorSaturation
-	  section.data(20).logicalSrcIdx = 19;
-	  section.data(20).dtTransOffset = 47;
-	
-	  ;% heli_q8_B.BackmotorSaturation
-	  section.data(21).logicalSrcIdx = 20;
-	  section.data(21).dtTransOffset = 48;
-	
-	  ;% heli_q8_B.RateTransitionx
-	  section.data(22).logicalSrcIdx = 21;
-	  section.data(22).dtTransOffset = 49;
-	
-	  ;% heli_q8_B.Joystick_gain_x
-	  section.data(23).logicalSrcIdx = 22;
-	  section.data(23).dtTransOffset = 50;
+	  section.data(13).dtTransOffset = 60;
 	
 	  ;% heli_q8_B.RateTransitiony
-	  section.data(24).logicalSrcIdx = 23;
-	  section.data(24).dtTransOffset = 51;
+	  section.data(14).logicalSrcIdx = 13;
+	  section.data(14).dtTransOffset = 61;
 	
 	  ;% heli_q8_B.Joystick_gain_y
+	  section.data(15).logicalSrcIdx = 14;
+	  section.data(15).dtTransOffset = 62;
+	
+	  ;% heli_q8_B.PitchCounttorad
+	  section.data(16).logicalSrcIdx = 15;
+	  section.data(16).dtTransOffset = 63;
+	
+	  ;% heli_q8_B.PitchTransferFcn
+	  section.data(17).logicalSrcIdx = 16;
+	  section.data(17).dtTransOffset = 64;
+	
+	  ;% heli_q8_B.TransferFcn
+	  section.data(18).logicalSrcIdx = 17;
+	  section.data(18).dtTransOffset = 65;
+	
+	  ;% heli_q8_B.TravelCounttorad
+	  section.data(19).logicalSrcIdx = 18;
+	  section.data(19).dtTransOffset = 66;
+	
+	  ;% heli_q8_B.TravelTransferFcn
+	  section.data(20).logicalSrcIdx = 19;
+	  section.data(20).dtTransOffset = 67;
+	
+	  ;% heli_q8_B.Integrator2
+	  section.data(21).logicalSrcIdx = 20;
+	  section.data(21).dtTransOffset = 68;
+	
+	  ;% heli_q8_B.TransferFcn_m
+	  section.data(22).logicalSrcIdx = 21;
+	  section.data(22).dtTransOffset = 70;
+	
+	  ;% heli_q8_B.Constant_e
+	  section.data(23).logicalSrcIdx = 22;
+	  section.data(23).dtTransOffset = 71;
+	
+	  ;% heli_q8_B.Constant1_j
+	  section.data(24).logicalSrcIdx = 23;
+	  section.data(24).dtTransOffset = 81;
+	
+	  ;% heli_q8_B.Sum
 	  section.data(25).logicalSrcIdx = 24;
-	  section.data(25).dtTransOffset = 52;
+	  section.data(25).dtTransOffset = 85;
+	
+	  ;% heli_q8_B.Sum2
+	  section.data(26).logicalSrcIdx = 25;
+	  section.data(26).dtTransOffset = 86;
+	
+	  ;% heli_q8_B.Vs_offset
+	  section.data(27).logicalSrcIdx = 26;
+	  section.data(27).dtTransOffset = 87;
+	
+	  ;% heli_q8_B.FrontmotorSaturation
+	  section.data(28).logicalSrcIdx = 27;
+	  section.data(28).dtTransOffset = 88;
+	
+	  ;% heli_q8_B.BackmotorSaturation
+	  section.data(29).logicalSrcIdx = 28;
+	  section.data(29).dtTransOffset = 89;
+	
+	  ;% heli_q8_B.Constant6
+	  section.data(30).logicalSrcIdx = 29;
+	  section.data(30).dtTransOffset = 90;
+	
+	  ;% heli_q8_B.Constant7
+	  section.data(31).logicalSrcIdx = 30;
+	  section.data(31).dtTransOffset = 126;
+	
+	  ;% heli_q8_B.RateTransitionx
+	  section.data(32).logicalSrcIdx = 31;
+	  section.data(32).dtTransOffset = 138;
+	
+	  ;% heli_q8_B.Joystick_gain_x
+	  section.data(33).logicalSrcIdx = 32;
+	  section.data(33).dtTransOffset = 139;
 	
 	  ;% heli_q8_B.GameController_o4
-	  section.data(26).logicalSrcIdx = 25;
-	  section.data(26).dtTransOffset = 53;
+	  section.data(34).logicalSrcIdx = 33;
+	  section.data(34).dtTransOffset = 140;
 	
 	  ;% heli_q8_B.GameController_o5
-	  section.data(27).logicalSrcIdx = 26;
-	  section.data(27).dtTransOffset = 54;
+	  section.data(35).logicalSrcIdx = 34;
+	  section.data(35).dtTransOffset = 141;
 	
-	  ;% heli_q8_B.Gain4
-	  section.data(28).logicalSrcIdx = 27;
-	  section.data(28).dtTransOffset = 55;
+	  ;% heli_q8_B.euler_angles
+	  section.data(36).logicalSrcIdx = 35;
+	  section.data(36).dtTransOffset = 142;
 	
-	  ;% heli_q8_B.Sum1
-	  section.data(29).logicalSrcIdx = 28;
-	  section.data(29).dtTransOffset = 60;
+	  ;% heli_q8_B.K_k
+	  section.data(37).logicalSrcIdx = 36;
+	  section.data(37).dtTransOffset = 145;
 	
-	  ;% heli_q8_B.euler_rates
-	  section.data(30).logicalSrcIdx = 29;
-	  section.data(30).dtTransOffset = 65;
+	  ;% heli_q8_B.P_pred_k_plus_1
+	  section.data(38).logicalSrcIdx = 37;
+	  section.data(38).dtTransOffset = 175;
+	
+	  ;% heli_q8_B.x_pred_k_plus_1
+	  section.data(39).logicalSrcIdx = 38;
+	  section.data(39).dtTransOffset = 211;
+	
+	  ;% heli_q8_B.x_est_k
+	  section.data(40).logicalSrcIdx = 39;
+	  section.data(40).dtTransOffset = 217;
+	
+	  ;% heli_q8_B.P_est_k_diag
+	  section.data(41).logicalSrcIdx = 40;
+	  section.data(41).dtTransOffset = 223;
 	
       nTotData = nTotData + section.nData;
       sigMap.sections(1) = section;
@@ -826,7 +870,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_B.StreamCall1_o2
-	  section.data(1).logicalSrcIdx = 30;
+	  section.data(1).logicalSrcIdx = 41;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -851,7 +895,7 @@
   ;%*******************
       
     nTotData      = 0; %add to this count as we go
-    nTotSects     = 9;
+    nTotSects     = 10;
     sectIdxOffset = 2;
     
     ;%
@@ -874,56 +918,72 @@
     ;%
     ;% Auto data (heli_q8_DW)
     ;%
-      section.nData     = 12;
-      section.data(12)  = dumData; %prealloc
+      section.nData     = 16;
+      section.data(16)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.HILInitialize_AIMinimums
+	  ;% heli_q8_DW.UnitDelay_DSTATE
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% heli_q8_DW.HILInitialize_AIMaximums
+	  ;% heli_q8_DW.UnitDelay1_DSTATE
 	  section.data(2).logicalSrcIdx = 1;
-	  section.data(2).dtTransOffset = 8;
+	  section.data(2).dtTransOffset = 6;
+	
+	  ;% heli_q8_DW.HILInitialize_AIMinimums
+	  section.data(3).logicalSrcIdx = 2;
+	  section.data(3).dtTransOffset = 42;
+	
+	  ;% heli_q8_DW.HILInitialize_AIMaximums
+	  section.data(4).logicalSrcIdx = 3;
+	  section.data(4).dtTransOffset = 50;
 	
 	  ;% heli_q8_DW.HILInitialize_AOMinimums
-	  section.data(3).logicalSrcIdx = 2;
-	  section.data(3).dtTransOffset = 16;
+	  section.data(5).logicalSrcIdx = 4;
+	  section.data(5).dtTransOffset = 58;
 	
 	  ;% heli_q8_DW.HILInitialize_AOMaximums
-	  section.data(4).logicalSrcIdx = 3;
-	  section.data(4).dtTransOffset = 24;
+	  section.data(6).logicalSrcIdx = 5;
+	  section.data(6).dtTransOffset = 66;
 	
 	  ;% heli_q8_DW.HILInitialize_AOVoltages
-	  section.data(5).logicalSrcIdx = 4;
-	  section.data(5).dtTransOffset = 32;
+	  section.data(7).logicalSrcIdx = 6;
+	  section.data(7).dtTransOffset = 74;
 	
 	  ;% heli_q8_DW.HILInitialize_FilterFrequency
-	  section.data(6).logicalSrcIdx = 5;
-	  section.data(6).dtTransOffset = 40;
+	  section.data(8).logicalSrcIdx = 7;
+	  section.data(8).dtTransOffset = 82;
 	
 	  ;% heli_q8_DW.HILInitialize_POSortedFreqs
-	  section.data(7).logicalSrcIdx = 6;
-	  section.data(7).dtTransOffset = 48;
+	  section.data(9).logicalSrcIdx = 8;
+	  section.data(9).dtTransOffset = 90;
 	
 	  ;% heli_q8_DW.HILInitialize_POValues
-	  section.data(8).logicalSrcIdx = 7;
-	  section.data(8).dtTransOffset = 56;
+	  section.data(10).logicalSrcIdx = 9;
+	  section.data(10).dtTransOffset = 98;
 	
 	  ;% heli_q8_DW.Memory_PreviousInput
-	  section.data(9).logicalSrcIdx = 8;
-	  section.data(9).dtTransOffset = 64;
-	
-	  ;% heli_q8_DW.HILWriteAnalog_Buffer
-	  section.data(10).logicalSrcIdx = 9;
-	  section.data(10).dtTransOffset = 74;
-	
-	  ;% heli_q8_DW.RateTransitionx_Buffer0
 	  section.data(11).logicalSrcIdx = 10;
-	  section.data(11).dtTransOffset = 76;
+	  section.data(11).dtTransOffset = 106;
+	
+	  ;% heli_q8_DW.Memory2_PreviousInput
+	  section.data(12).logicalSrcIdx = 11;
+	  section.data(12).dtTransOffset = 116;
+	
+	  ;% heli_q8_DW.l_dot
+	  section.data(13).logicalSrcIdx = 12;
+	  section.data(13).dtTransOffset = 117;
 	
 	  ;% heli_q8_DW.RateTransitiony_Buffer0
-	  section.data(12).logicalSrcIdx = 11;
-	  section.data(12).dtTransOffset = 77;
+	  section.data(14).logicalSrcIdx = 13;
+	  section.data(14).dtTransOffset = 118;
+	
+	  ;% heli_q8_DW.HILWriteAnalog_Buffer
+	  section.data(15).logicalSrcIdx = 14;
+	  section.data(15).dtTransOffset = 119;
+	
+	  ;% heli_q8_DW.RateTransitionx_Buffer0
+	  section.data(16).logicalSrcIdx = 15;
+	  section.data(16).dtTransOffset = 121;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(1) = section;
@@ -933,7 +993,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.StreamCall1_Stream
-	  section.data(1).logicalSrcIdx = 12;
+	  section.data(1).logicalSrcIdx = 16;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -944,7 +1004,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.GameController_Controller
-	  section.data(1).logicalSrcIdx = 13;
+	  section.data(1).logicalSrcIdx = 17;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -955,7 +1015,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.HILInitialize_Card
-	  section.data(1).logicalSrcIdx = 14;
+	  section.data(1).logicalSrcIdx = 18;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -966,95 +1026,123 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.HILReadEncoderTimebase_Task
-	  section.data(1).logicalSrcIdx = 15;
+	  section.data(1).logicalSrcIdx = 19;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(5) = section;
       clear section
       
-      section.nData     = 20;
-      section.data(20)  = dumData; %prealloc
+      section.nData     = 27;
+      section.data(27)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.elevation_PWORK.LoggedData
-	  section.data(1).logicalSrcIdx = 16;
+	  ;% heli_q8_DW.ToFile_PWORK.FilePtr
+	  section.data(1).logicalSrcIdx = 20;
 	  section.data(1).dtTransOffset = 0;
 	
-	  ;% heli_q8_DW.elevationrate_PWORK.LoggedData
-	  section.data(2).logicalSrcIdx = 17;
+	  ;% heli_q8_DW.elevation_PWORK.LoggedData
+	  section.data(2).logicalSrcIdx = 21;
 	  section.data(2).dtTransOffset = 1;
 	
-	  ;% heli_q8_DW.pitch_PWORK.LoggedData
-	  section.data(3).logicalSrcIdx = 18;
+	  ;% heli_q8_DW.elevationrate_PWORK.LoggedData
+	  section.data(3).logicalSrcIdx = 22;
 	  section.data(3).dtTransOffset = 2;
 	
-	  ;% heli_q8_DW.pitchrate_PWORK.LoggedData
-	  section.data(4).logicalSrcIdx = 19;
+	  ;% heli_q8_DW.elevationrate1_PWORK.LoggedData
+	  section.data(4).logicalSrcIdx = 23;
 	  section.data(4).dtTransOffset = 3;
 	
-	  ;% heli_q8_DW.travelrate_PWORK.LoggedData
-	  section.data(5).logicalSrcIdx = 20;
+	  ;% heli_q8_DW.pitch_PWORK.LoggedData
+	  section.data(5).logicalSrcIdx = 24;
 	  section.data(5).dtTransOffset = 4;
 	
-	  ;% heli_q8_DW.Elevation_PWORK.LoggedData
-	  section.data(6).logicalSrcIdx = 21;
+	  ;% heli_q8_DW.pitchrate_PWORK.LoggedData
+	  section.data(6).logicalSrcIdx = 25;
 	  section.data(6).dtTransOffset = 5;
 	
-	  ;% heli_q8_DW.Elevationrate_PWORK.LoggedData
-	  section.data(7).logicalSrcIdx = 22;
+	  ;% heli_q8_DW.pitch1_PWORK.LoggedData
+	  section.data(7).logicalSrcIdx = 26;
 	  section.data(7).dtTransOffset = 6;
 	
-	  ;% heli_q8_DW.Pitch_PWORK.LoggedData
-	  section.data(8).logicalSrcIdx = 23;
+	  ;% heli_q8_DW.travel_PWORK.LoggedData
+	  section.data(8).logicalSrcIdx = 27;
 	  section.data(8).dtTransOffset = 7;
 	
-	  ;% heli_q8_DW.ElevationrateScoperads_PWORK.LoggedData
-	  section.data(9).logicalSrcIdx = 24;
+	  ;% heli_q8_DW.travelrate_PWORK.LoggedData
+	  section.data(9).logicalSrcIdx = 28;
 	  section.data(9).dtTransOffset = 8;
 	
-	  ;% heli_q8_DW.ElevationScoperad_PWORK.LoggedData
-	  section.data(10).logicalSrcIdx = 25;
+	  ;% heli_q8_DW.Elevation_PWORK.LoggedData
+	  section.data(10).logicalSrcIdx = 29;
 	  section.data(10).dtTransOffset = 9;
 	
-	  ;% heli_q8_DW.PitchrateScoperads_PWORK.LoggedData
-	  section.data(11).logicalSrcIdx = 26;
+	  ;% heli_q8_DW.Elevationrate_PWORK.LoggedData
+	  section.data(11).logicalSrcIdx = 30;
 	  section.data(11).dtTransOffset = 10;
 	
-	  ;% heli_q8_DW.PitchScoperad_PWORK.LoggedData
-	  section.data(12).logicalSrcIdx = 27;
+	  ;% heli_q8_DW.Pitch_PWORK.LoggedData
+	  section.data(12).logicalSrcIdx = 31;
 	  section.data(12).dtTransOffset = 11;
 	
-	  ;% heli_q8_DW.TravelrateScoperads_PWORK.LoggedData
-	  section.data(13).logicalSrcIdx = 28;
+	  ;% heli_q8_DW.ElevationrateScoperads_PWORK.LoggedData
+	  section.data(13).logicalSrcIdx = 32;
 	  section.data(13).dtTransOffset = 12;
 	
-	  ;% heli_q8_DW.TravelScoperad_PWORK.LoggedData
-	  section.data(14).logicalSrcIdx = 29;
+	  ;% heli_q8_DW.ElevationScoperad_PWORK.LoggedData
+	  section.data(14).logicalSrcIdx = 33;
 	  section.data(14).dtTransOffset = 13;
 	
-	  ;% heli_q8_DW.HILWriteAnalog_PWORK
-	  section.data(15).logicalSrcIdx = 30;
+	  ;% heli_q8_DW.PitchrateScoperads_PWORK.LoggedData
+	  section.data(15).logicalSrcIdx = 34;
 	  section.data(15).dtTransOffset = 14;
 	
-	  ;% heli_q8_DW.Vb_PWORK.LoggedData
-	  section.data(16).logicalSrcIdx = 31;
+	  ;% heli_q8_DW.PitchScoperad_PWORK.LoggedData
+	  section.data(16).logicalSrcIdx = 35;
 	  section.data(16).dtTransOffset = 15;
 	
-	  ;% heli_q8_DW.Vf_PWORK.LoggedData
-	  section.data(17).logicalSrcIdx = 32;
+	  ;% heli_q8_DW.TravelrateScoperads_PWORK.LoggedData
+	  section.data(17).logicalSrcIdx = 36;
 	  section.data(17).dtTransOffset = 16;
 	
-	  ;% heli_q8_DW.Connected_PWORK.LoggedData
-	  section.data(18).logicalSrcIdx = 33;
+	  ;% heli_q8_DW.TravelScoperad_PWORK.LoggedData
+	  section.data(18).logicalSrcIdx = 37;
 	  section.data(18).dtTransOffset = 17;
 	
-	  ;% heli_q8_DW.XScope_PWORK.LoggedData
-	  section.data(19).logicalSrcIdx = 34;
+	  ;% heli_q8_DW.HILWriteAnalog_PWORK
+	  section.data(19).logicalSrcIdx = 38;
 	  section.data(19).dtTransOffset = 18;
 	
-	  ;% heli_q8_DW.YScope_PWORK.LoggedData
-	  section.data(20).logicalSrcIdx = 35;
+	  ;% heli_q8_DW.Vb_PWORK.LoggedData
+	  section.data(20).logicalSrcIdx = 39;
 	  section.data(20).dtTransOffset = 19;
+	
+	  ;% heli_q8_DW.Vf_PWORK.LoggedData
+	  section.data(21).logicalSrcIdx = 40;
+	  section.data(21).dtTransOffset = 20;
+	
+	  ;% heli_q8_DW.Connected_PWORK.LoggedData
+	  section.data(22).logicalSrcIdx = 41;
+	  section.data(22).dtTransOffset = 21;
+	
+	  ;% heli_q8_DW.P_11P_22_PWORK.LoggedData
+	  section.data(23).logicalSrcIdx = 42;
+	  section.data(23).dtTransOffset = 22;
+	
+	  ;% heli_q8_DW.P_33P_44_PWORK.LoggedData
+	  section.data(24).logicalSrcIdx = 43;
+	  section.data(24).dtTransOffset = 23;
+	
+	  ;% heli_q8_DW.P_55P_66_PWORK.LoggedData
+	  section.data(25).logicalSrcIdx = 44;
+	  section.data(25).dtTransOffset = 24;
+	
+	  ;% heli_q8_DW.XScope_PWORK.LoggedData
+	  section.data(26).logicalSrcIdx = 45;
+	  section.data(26).dtTransOffset = 25;
+	
+	  ;% heli_q8_DW.YScope_PWORK.LoggedData
+	  section.data(27).logicalSrcIdx = 46;
+	  section.data(27).dtTransOffset = 26;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(6) = section;
@@ -1064,31 +1152,31 @@
       section.data(7)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.HILInitialize_ClockModes
-	  section.data(1).logicalSrcIdx = 36;
+	  section.data(1).logicalSrcIdx = 47;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% heli_q8_DW.HILInitialize_QuadratureModes
-	  section.data(2).logicalSrcIdx = 37;
+	  section.data(2).logicalSrcIdx = 48;
 	  section.data(2).dtTransOffset = 3;
 	
 	  ;% heli_q8_DW.HILInitialize_InitialEICounts
-	  section.data(3).logicalSrcIdx = 38;
+	  section.data(3).logicalSrcIdx = 49;
 	  section.data(3).dtTransOffset = 11;
 	
 	  ;% heli_q8_DW.HILInitialize_POModeValues
-	  section.data(4).logicalSrcIdx = 39;
+	  section.data(4).logicalSrcIdx = 50;
 	  section.data(4).dtTransOffset = 19;
 	
 	  ;% heli_q8_DW.HILInitialize_POAlignValues
-	  section.data(5).logicalSrcIdx = 40;
+	  section.data(5).logicalSrcIdx = 51;
 	  section.data(5).dtTransOffset = 27;
 	
 	  ;% heli_q8_DW.HILInitialize_POPolarityVals
-	  section.data(6).logicalSrcIdx = 41;
+	  section.data(6).logicalSrcIdx = 52;
 	  section.data(6).dtTransOffset = 35;
 	
 	  ;% heli_q8_DW.HILReadEncoderTimebase_Buffer
-	  section.data(7).logicalSrcIdx = 42;
+	  section.data(7).logicalSrcIdx = 53;
 	  section.data(7).dtTransOffset = 43;
 	
       nTotData = nTotData + section.nData;
@@ -1099,7 +1187,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.HILInitialize_POSortedChans
-	  section.data(1).logicalSrcIdx = 43;
+	  section.data(1).logicalSrcIdx = 54;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -1109,12 +1197,23 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.StreamCall1_State
-	  section.data(1).logicalSrcIdx = 44;
+	  ;% heli_q8_DW.ToFile_IWORK.Count
+	  section.data(1).logicalSrcIdx = 55;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(9) = section;
+      clear section
+      
+      section.nData     = 1;
+      section.data(1)  = dumData; %prealloc
+      
+	  ;% heli_q8_DW.StreamCall1_State
+	  section.data(1).logicalSrcIdx = 56;
+	  section.data(1).dtTransOffset = 0;
+	
+      nTotData = nTotData + section.nData;
+      dworkMap.sections(10) = section;
       clear section
       
     
@@ -1143,8 +1242,8 @@
   ;%
 
 
-  targMap.checksum0 = 1917183783;
-  targMap.checksum1 = 411378218;
-  targMap.checksum2 = 3105751138;
-  targMap.checksum3 = 875474360;
+  targMap.checksum0 = 362425750;
+  targMap.checksum1 = 1278369170;
+  targMap.checksum2 = 1585400086;
+  targMap.checksum3 = 35240508;
 

@@ -5,11 +5,11 @@ clear all
 close all
 
 %% Init one file
-input = load('p4t5_kalman-feedback-optimal-tuning_p.mat');
-plot_title = 'Kalman estimator feedback, optimal tuning, pitch';
-file_name = 'p4t5_optimal-tuning_p';
+input = load('p4t5_kalman-feedback-optimal-tuning_e-dot-and-e-dot-c_vs-tilde-fix.mat');
+plot_title = 'Kalman estimator feedback, optimal tuning, elevation rate';
+file_name = 'p4t5_kalman-feedback-optimal-tuning_e_dot';
 xaxis = 'Time [s]';
-yaxis = 'Pitch [rad/s]';
+yaxis = 'Elevation rate [rad/s]';
 
 time = input.ans(1,:);
 setpoint = input.ans(3,:);
@@ -17,7 +17,7 @@ values = input.ans(2,:);
 %values2 = input.ans(2,:);
 
 time_start = 5;
-time_end = 60;
+time_end = 70;
 
 
 % figure; % Calling figure => Plot/write in a new window
@@ -39,14 +39,14 @@ lgd.Location = 'southeast';
 
 %% Init multiple files
 figure
-input1 = load('p4t4_testing-disable-new-data_P_est_11and22.mat');
-input2 = load('p4t4_testing-disable-new-data_P_est_33and44.mat');
-input3 = load('p4t4_testing-disable-new-data_P_est_55and66.mat');
+input1 = load('p4tx_kalman-wrong-initialization-of-e-offset_e.mat');
+input2 = load('p4tx_kalman-correct-initialization-of-e-offset_e.mat');
+%input3 = load('p4t4_testing-disable-new-data_P_est_55and66.mat');
 %input4 = load('p1t3_pole-placement-a=-1-b=2-with-elev_pitch-measurement_v1.mat');
-plot_title = 'Disabling "new data"-signal during flight, estimate variance';
-file_name = 'p4t4_disable-new-data_P-matrix_2';
+plot_title = 'Effect of different choices of x\^(0)';
+file_name = 'p4tx_correct-choice-of-x-est';
 xaxis = 'Time [s]';
-yaxis = '';
+yaxis = 'Elevation [rad]';
 
 time1 = input1.ans(1,:);
 reference1 = input1.ans(2,:);
@@ -56,16 +56,16 @@ time2 = input2.ans(1,:);
 reference2 = input2.ans(2,:);
 values2 = input2.ans(3,:);
 
-time3 = input3.ans(1,:);
-reference3 = input3.ans(2,:);
-values3 = input3.ans(3,:);
+% time3 = input3.ans(1,:);
+% reference3 = input3.ans(2,:);
+% values3 = input3.ans(3,:);
 
 %time4 = input4.ans(1,:);
 %reference4 = input4.ans(2,:);
 %values3 = input3.ans(2,:);
 
-time_start = 10;
-time_end = 30;
+time_start = 0;
+time_end = 3;
 
 
 % figure; % Calling figure => Plot/write in a new window
@@ -87,7 +87,7 @@ xlim([time_start time_end]);
 xlabel(xaxis);
 ylabel(yaxis);
 
-lg = legend('P_{11}', 'P_{22}', 'P_{33}', 'P_{44}', 'P_{55}', 'P_{66}');
+lg = legend('Encoder measurement, x\^(0) = 0', 'Kalman estimate, x\^(0) = 0', 'Encoder measurement, x\^(0) = e_{offset}', 'Kalman estimate, x\^(0) = e_{offset}');
 
 %% Plot multiple plots in same figure
 figure
