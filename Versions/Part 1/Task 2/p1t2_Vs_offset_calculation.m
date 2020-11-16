@@ -1,9 +1,9 @@
 margin = 5;
 
-input1 = load('p1t2_Vs-offset_Vs_v2.mat');
+input1 = load('p1t2_Vs-offset_Vs_v3.mat');
 voltages = input1.ans(2,:);
 
-input2 = load('p1t2_Vs-offset_elevation_v2.mat');
+input2 = load('p1t2_Vs-offset_elevation_v3.mat');
 elevations = input2.ans(2,:);
 
 candidates = zeros(1, size(voltages, 2));
@@ -45,10 +45,18 @@ figure;
 avg_voltage = mean(candidates_no_outliers,2);
 
 %%
-
-plot(voltages, elevations);
-title('Phase plot of Vs offset analysis first try');
+hold on
+scatter(voltages, elevations);
+x_vals = [0:0.1:9];
+plot(x_vals, zeros(1, length(x_vals)));
+y_vals = [-50:0.1:350];
+plot(7.839*ones(length(y_vals)), y_vals, 'r');
+title('Scatter plot of Vs offset analysis');
+xlim([0 9]);
+ylim([-50 350]);
 xlabel('Vs [V]');
 ylabel('Elevation [steps]');
-print('p1t2_Vs_offset_phase_plot_first_try', '-djpeg');
-print('p1t2_Vs_offset_phase_plot_first_try', '-depsc');
+legend('Datapoints','e = 0','Calculated V_{s,offset}');
+%%
+print('p1t2_Vs_offset_phase_plot_scatter', '-djpeg');
+print('p1t2_Vs_offset_phase_plot_scatter', '-depsc');
